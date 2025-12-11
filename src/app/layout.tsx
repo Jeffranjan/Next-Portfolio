@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Orbitron } from "next/font/google"; // Generic futuristic font
 import "./globals.css";
+
 import Navbar from "@/components/layout/Navbar";
+import MagneticCursor from "@/components/common/MagneticCursor";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -26,9 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${jetbrainsMono.variable} ${orbitron.variable} antialiased`}>
-      <body className="bg-background text-foreground overflow-x-hidden selection:bg-primary selection:text-black font-mono" suppressHydrationWarning>
+    <html lang="en" className={`${jetbrainsMono.variable} ${orbitron.variable} antialiased`} suppressHydrationWarning>
+      <body className="bg-background text-foreground overflow-x-hidden selection:bg-primary selection:text-black font-mono cursor-none" suppressHydrationWarning>
         <Navbar />
+        <MagneticCursor />
         {children}
       </body>
     </html>

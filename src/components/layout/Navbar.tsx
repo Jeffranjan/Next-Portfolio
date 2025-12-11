@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils"; // Assuming you have a utils file for merging 
 // For now, I'll assume standard shadcn/ui or similar structure since lucide-react and tailwind-merge are present.
 
 const navItems = [
-    { name: "Hero", href: "#hero", icon: Terminal },
+    { name: "Home", href: "#hero", icon: Terminal },
     { name: "Projects", href: "#projects", icon: Code },
     { name: "Experience", href: "#experience", icon: Cpu },
     { name: "Contact", href: "#contact", icon: Mail },
@@ -27,7 +27,7 @@ export default function Navbar() {
             setScrolled(window.scrollY > 50);
 
             // Simple active section detection based on scroll position
-            const sections = navItems.map((item) => item.name.toLowerCase());
+            const sections = navItems.map((item) => item.href.substring(1));
             for (const section of sections) {
                 const element = document.getElementById(section);
                 if (element) {
@@ -69,7 +69,7 @@ export default function Navbar() {
                 <Link
                     href="#hero"
                     onClick={(e) => { e.preventDefault(); handleNavClick("#hero"); }}
-                    className="text-2xl font-bold font-display tracking-tighter flex items-center gap-2 group"
+                    className="text-xl md:text-2xl font-bold font-display tracking-tighter flex items-center gap-2 group"
                 >
                     <span className="text-primary">{`<`}</span>
                     <span className="text-white group-hover:text-primary transition-colors">Ranjan Gupta</span>
@@ -91,7 +91,7 @@ export default function Navbar() {
                             <item.icon className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-primary -ml-6 absolute" />
                             <span className={cn(
                                 "transition-all duration-300",
-                                activeSection === item.name.toLowerCase() ? "text-primary shadow-[0_0_10px_rgba(34,211,238,0.5)]" : ""
+                                activeSection === item.href.substring(1) ? "text-primary shadow-[0_0_10px_rgba(34,211,238,0.5)]" : ""
                             )}>
                                 {item.name}
                             </span>

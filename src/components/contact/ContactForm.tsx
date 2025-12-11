@@ -32,13 +32,13 @@ export default function ContactForm() {
 
     return (
         <section id="contact" className="py-20 px-6 md:px-20 w-full relative z-10 flex flex-col items-center bg-[#050505]">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
 
             <div className="mb-12 text-center font-mono">
                 <div className="flex items-center justify-center gap-2 text-secondary text-sm mb-2">
                     <span className="text-primary">$</span> ./connect_user.sh
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold font-display text-white">
+                <h2 className="text-3xl md:text-5xl font-bold font-display text-white">
                     Initialize <span className="text-primary">Connection</span>
                 </h2>
             </div>

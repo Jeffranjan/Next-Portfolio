@@ -8,10 +8,10 @@ export default function ProjectGrid() {
         <section id="projects" className="py-20 px-6 md:px-20 w-full relative z-10">
             <div className="flex flex-col gap-2 mb-12">
                 <h2 className="text-primary tracking-widest text-sm font-semibold uppercase">
-                    Selected Works
+                    Something Cool awaits you
                 </h2>
-                <h3 className="text-4xl md:text-5xl font-bold font-display text-white">
-                    Digital <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">Creations</span>
+                <h3 className="text-3xl md:text-5xl font-bold font-display text-white">
+                    My <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">Projects</span>
                 </h3>
             </div>
 

@@ -26,7 +26,7 @@ export default async function ProjectDetail({ params }: PageProps) {
     return (
         <main className="min-h-screen bg-background relative selection:bg-primary selection:text-black">
             {/* Navigation */}
-            <nav className="absolute top-0 left-0 p-6 z-50">
+            <nav className="absolute top-24 left-0 w-full lg:w-1/2 px-6 lg:px-20 z-50">
                 <Link href="/" className="flex items-center gap-2 text-white/70 hover:text-white transition-colors group">
                     <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                     Back to Projects

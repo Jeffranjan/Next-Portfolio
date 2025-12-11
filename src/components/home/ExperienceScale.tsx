@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 
 const experienceData = [
     {
-        year: "2023 - Present",
-        role: "Senior Full Stack Dev",
-        company: "TechNova Solutions",
-        description: "Leading a team of 5 developers building scalable fintech applications using Next.js and AWS.",
+        year: "2025 - Present",
+        role: "Full-Stack Developer",
+        company: "Freelancing",
+        description: "Delivered multiple client web applications using React.js and Next.js, improving overall UI/UX and engagement. Currently developing a full-stack e-commerce platform with admin analytics using React, Redux, Node.js, Express.js, MongoDB and Supabase to optimize inventory, cart, and payment workflows. Additionally, provided backend support and security for healthcare applications, strengthening IT operations and system reliability.",
     },
     {
         year: "2021 - 2023",
@@ -30,7 +30,7 @@ export default function ExperienceScale() {
                 <div className="flex items-center gap-2 text-gray-500 text-sm">
                     <span className="text-primary">$</span> git log --oneline --graph
                 </div>
-                <h3 className="text-4xl md:text-5xl font-bold font-display text-white mt-4">
+                <h3 className="text-3xl md:text-5xl font-bold font-display text-white mt-4">
                     Commit <span className="text-primary">History</span>
                 </h3>
             </div>

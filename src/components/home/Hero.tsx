@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Scene from "@/components/canvas/Scene";
 import HeroModel from "@/components/canvas/HeroModel";
 import MatrixBackground from "@/components/canvas/MatrixBackground";
+import TypewriterEffect from "./TypewriterEffect";
 import { ArrowRight, Download } from "lucide-react";
 
 export default function Hero() {
@@ -22,8 +23,8 @@ export default function Hero() {
                     <span className="terminal-text">Initialize System...</span>
                 </div>
 
-                <h1 className="text-5xl md:text-7xl font-bold font-display leading-tight text-white">
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent glitch" data-text="HELLO_WORLD">HELLO_WORLD</span>
+                <h1 className="text-4xl md:text-7xl font-bold font-display leading-tight text-white">
+                    <TypewriterEffect />
                 </h1>
 
                 <p className="text-gray-400 text-lg md:text-xl max-w-lg font-mono">
@@ -41,7 +42,7 @@ export default function Hero() {
             </motion.div>
 
             {/* 3D Scene */}
-            <div className="absolute inset-0 md:static w-full md:w-1/2 h-full z-0 opacity-50 md:opacity-100">
+            <div className="absolute inset-0 md:static w-full md:w-1/2 h-full z-0 md:z-auto opacity-30 md:opacity-100 pointer-events-none md:pointer-events-auto">
                 <div className="w-full h-full">
                     <Scene>
                         <HeroModel />
@@ -55,8 +56,8 @@ export default function Hero() {
             </div>
 
             {/* Background Gradients */}
-            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/20 blur-[120px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-secondary/10 blur-[120px] rounded-full translate-x-1/2 translate-y-1/2 pointer-events-none" />
+            <div className="absolute top-0 left-0 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-primary/20 blur-[120px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-secondary/10 blur-[120px] rounded-full translate-x-1/2 translate-y-1/2 pointer-events-none" />
 
         </section>
     );
