@@ -4,22 +4,28 @@ import { motion } from "framer-motion";
 
 const experienceData = [
     {
-        year: "2025 - Present",
+        year: "Oct 2024 - Present",
         role: "Full-Stack Developer",
         company: "Freelancing",
         description: "Delivered multiple client web applications using React.js and Next.js, improving overall UI/UX and engagement. Currently developing a full-stack e-commerce platform with admin analytics using React, Redux, Node.js, Express.js, MongoDB and Supabase to optimize inventory, cart, and payment workflows. Additionally, provided backend support and security for healthcare applications, strengthening IT operations and system reliability.",
     },
     {
-        year: "2021 - 2023",
-        role: "Frontend Engineer",
-        company: "Creative Pulse Studio",
-        description: "Specialized in 3D web experiences and interactive campaigns for major brands.",
+        year: "Jan 2024 - Sep 2024",
+        role: "Backend Developer",
+        company: "Grow Academy Pvt. Ltd.",
+        description: "Managed full-stack development for internal web applications using Node.js, Express, and MongoDB, improving system efficiency by 40%. Led the complete project lifecycle, including requirement analysis, RESTful API development, frontend integration, testing, and deployment. Also introduced best practices for version control and code reviews to enhance team workflow and code quality.",
     },
     {
-        year: "2019 - 2021",
-        role: "Junior Developer",
-        company: "StartUp Inc.",
-        description: "Full stack development with MERN stack, contributing to core product features.",
+        year: "Jan 2023 - Dec 2023",
+        role: "Web & Databases Management",
+        company: "digiDZN (digiCart India Pvt. Ltd.",
+        description: "Designed and developed responsive web interfaces using HTML5, CSS3, and JavaScript, increasing user engagement by 45% through improved UI design. Managed and optimized a 10,000+ record Freshdesk CRM database, enhancing data workflows and reducing ticket resolution time by 25%. Additionally, collaborated on SEO strategies for product pages, contributing to a 50% boost in organic search rankings.",
+    },
+    {
+        year: "Nov 2021 - Nov 2022",
+        role: "Web Developer Intern",
+        company: "Webpandits & Smarden | 30 Days Technologies Pvt. Ltd.",
+        description: "Assisted in developing and maintaining client websites while creating digital marketing graphics and UI elements for social campaigns. Additionally analyzed website performance metrics and prepared reports to guide improvements in design and content strategy.",
     },
 ];
 
