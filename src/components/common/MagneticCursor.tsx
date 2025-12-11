@@ -85,7 +85,7 @@ export default function MagneticCursor() {
                 }}
                 animate={{
                     scale: isHovering ? 2.5 : 1,
-                    backgroundColor: isHovering ? "rgba(0, 255, 65, 0.1)" : "transparent",
+                    backgroundColor: isHovering ? "rgba(0, 255, 65, 0.1)" : "rgba(0, 255, 65, 0)",
                     borderColor: isHovering ? "rgba(0, 255, 65, 0.5)" : "rgba(0, 255, 65, 0.8)",
                 }}
                 transition={{

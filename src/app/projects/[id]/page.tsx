@@ -33,9 +33,9 @@ export default async function ProjectDetail({ params }: PageProps) {
                 </Link>
             </nav>
 
-            <div className="flex flex-col lg:flex-row h-screen">
+            <div className="flex flex-col lg:flex-row min-h-screen">
                 {/* Left: Content */}
-                <section className="w-full lg:w-1/2 p-6 lg:p-20 flex flex-col justify-center relative z-10 bg-background/80 backdrop-blur-sm lg:bg-transparent">
+                <section className="w-full lg:w-1/2 px-6 pb-12 pt-36 lg:p-20 flex flex-col justify-start lg:justify-center relative z-10 bg-background/80 backdrop-blur-sm lg:bg-transparent">
                     <div className="space-y-8">
                         <div>
                             <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-4">

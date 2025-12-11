@@ -64,6 +64,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                         src={project.image}
                         alt={project.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover object-top transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-[#0a0a0a]/20 group-hover:bg-transparent transition-colors duration-300" />
