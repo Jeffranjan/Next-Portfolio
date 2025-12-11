@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
     try {
@@ -9,31 +11,30 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Missing fields" }, { status: 400 });
         }
 
-        const transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST || "smtp.example.com",
-            port: Number(process.env.SMTP_PORT) || 587,
-            secure: false, // true for 465, false for other ports
-            auth: {
-                user: process.env.SMTP_USER || "user",
-                pass: process.env.SMTP_PASS || "pass",
-            },
-        });
-
-        await transporter.sendMail({
-            from: `"${name}" <${process.env.SMTP_USER}>`, // sender address
-            to: process.env.CONTACT_EMAIL || "me@example.com", // list of receivers
+        const { data, error } = await resend.emails.send({
+            from: "Portfolio <onboarding@resend.dev>", // TODO: Replace with your verified domain
+            to: [process.env.CONTACT_EMAIL || "ranjanguptajeff@gmail.com"], // Fallback for safety
             replyTo: email,
-            subject: `Portfolio Contact: ${name}`, // Subject line
-            text: message, // plain text body
-            html: `<p><strong>Name:</strong> ${name}</p>
-             <p><strong>Email:</strong> ${email}</p>
-             <p><strong>Message:</strong></p>
-             <p>${message}</p>`,
+            subject: `Portfolio Contact: ${name}`,
+            html: `
+                <div>
+                    <h2>New Contact Form Submission</h2>
+                    <p><strong>Name:</strong> ${name}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Message:</strong></p>
+                    <p>${message}</p>
+                </div>
+            `,
         });
 
-        return NextResponse.json({ success: true });
+        if (error) {
+            console.error("Resend error:", error);
+            return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
+        }
+
+        return NextResponse.json({ success: true, data });
     } catch (error) {
-        console.error(error);
-        return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
+        console.error("Internal error:", error);
+        return NextResponse.json({ error: "Internal server error" }, { status: 500 });
     }
 }

@@ -32,9 +32,16 @@ export default function Hero() {
                 </p>
 
                 <div className="flex gap-4 mt-4 font-mono">
-                    <button className="px-8 py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-black transition-all flex items-center gap-2 group">
-                        {`>`} ./start_project.sh
-                    </button>
+                    <a
+                        href="#footer"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            document.getElementById('footer')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        className="px-8 py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-black transition-all flex items-center gap-2 group cursor-pointer"
+                    >
+                        {`>`} Hire Me
+                    </a>
                     <button className="px-8 py-3 bg-transparent border border-gray-700 text-gray-400 hover:border-accent hover:text-accent transition-all flex items-center gap-2">
                         {`>`} download_cv.pdf <Download className="w-4 h-4" />
                     </button>
