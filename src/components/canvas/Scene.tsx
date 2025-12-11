@@ -14,7 +14,7 @@ export default function Scene({ children, className, style }: SceneProps) {
         <Canvas
             className={className}
             style={style}
-            dpr={[1, 2]} // Adaptive pixel ratio for performance
+            dpr={[1, 1.5]} // Adaptive pixel ratio for performance (capped at 1.5x)
             gl={{ antialias: true, alpha: true }}
             camera={{ position: [0, 0, 5], fov: 50 }}
         >
