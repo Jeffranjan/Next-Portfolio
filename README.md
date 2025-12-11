@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Futuristic Portfolio - Ranjan Gupta
 
-## Getting Started
+![Project Banner](https://next-portfolio-git-main-ranjan-guptas-projects.vercel.app/opengraph-image.png)
 
-First, run the development server:
+A cutting-edge, futuristic personal portfolio website built with Next.js, TypeScript, and 3D technologies. This project showcases a "Neo-Arc" aesthetic, combining terminal-inspired UI, neon accents, and interactive 3D elements to create an immersive developer experience.
+
+[**Live Demo**](https://next-portfolio-git-main-ranjan-guptas-projects.vercel.app)
+
+## 🚀 Features
+
+-   **Futuristic "Neo-Arc" Design**: Terminal-inspired UI, glassmorphism, and neon aesthetics.
+-   **Interactive 3D Elements**: Powered by Three.js and React Three Fiber.
+-   **Smooth Animations**: Fluid transitions using Framer Motion and GSAP.
+-   **Responsive Layout**: Fully optimized for mobile, tablet, and desktop devices.
+-   **Dynamic Project Showcase**:  Rich interactions for displaying projects with tilt effects.
+-   **Contact Integration**:  Functional contact form using Resend for emails.
+
+## 🛠️ Tech Stack
+
+-   **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+-   **Language**: [TypeScript](https://www.typescriptlang.org/)
+-   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+-   **Animations**:
+    -   [Framer Motion](https://www.framer.com/motion/)
+    -   [GSAP](https://greensock.com/gsap/)
+-   **3D Graphics**:
+    -   [Three.js](https://threejs.org/)
+    -   [React Three Fiber](https://docs.pmnd.rs/react-three-fiber)
+    -   [@react-three/drei](https://github.com/pmndrs/drei)
+-   **Email Service**: [Resend](https://resend.com/)
+-   **Icons**: [Lucide React](https://lucide.dev/)
+
+## 📂 Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+src/
+├── app/              # Next.js App Router pages and layouts
+├── components/       # Reusable UI components
+│   ├── canvas/       # 3D scenes and canvas components
+│   ├── ui/           # Generic UI elements (buttons, cards, etc.)
+├── hooks/            # Custom React hooks
+├── lib/              # Utility functions and configurations
+└── styles/           # Global styles and tailwind config
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📦 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Ensure you have [Node.js](https://nodejs.org/) installed on your machine.
 
-## Learn More
+### Installation
 
-To learn more about Next.js, take a look at the following resources:
+1.  Clone the repository:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    ```bash
+    git clone https://github.com/yourusername/next-portfolio.git
+    cd next-portfolio
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2.  Install dependencies:
 
-## Deploy on Vercel
+    ```bash
+    npm install
+    # or
+    yarn install
+    # or
+    pnpm install
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3.  Run the development server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    ```bash
+    npm run dev
+    ```
+
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## 🚀 Deployment
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new).
+
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+Based on the [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
