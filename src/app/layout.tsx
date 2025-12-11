@@ -19,7 +19,7 @@ const orbitron = Orbitron({
 });
 
 export const metadata: Metadata = {
-  title: "Futuristic Portfolio",
+  title: "Ranjan's Portfolio",
   description: "Next.js + Three.js Portfolio",
 };
 
