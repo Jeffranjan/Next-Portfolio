@@ -12,7 +12,7 @@ export default function Footer() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl bg-primary/5 blur-[100px] pointer-events-none" />
 
             <div className="container mx-auto px-6 py-12 md:py-16 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 items-start">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
 
                     {/* Brand Column */}
                     <div className="space-y-4">
@@ -27,27 +27,30 @@ export default function Footer() {
                     </div>
 
                     {/* Contact Column */}
-                    <div className="space-y-4">
-                        <h3 className="text-primary font-display text-lg tracking-wide uppercase">Connect</h3>
-                        <div className="flex flex-col gap-3">
-                            <a
-                                href="tel:+917082771077"
-                                className="flex items-center gap-3 text-gray-400 hover:text-white group transition-colors font-mono text-sm"
-                            >
-                                <span className="p-2 border border-primary/20 rounded-md bg-transparent group-hover:bg-primary/10 transition-colors">
-                                    <Phone className="w-4 h-4 text-primary" />
-                                </span>
-                                +91 7082771077
-                            </a>
-                            <a
-                                href="mailto:Ranjanguptajeff@gmail.com"
-                                className="flex items-center gap-3 text-gray-400 hover:text-white group transition-colors font-mono text-sm"
-                            >
-                                <span className="p-2 border border-primary/20 rounded-md bg-transparent group-hover:bg-primary/10 transition-colors">
-                                    <Mail className="w-4 h-4 text-primary" />
-                                </span>
-                                Ranjanguptajeff@gmail.com
-                            </a>
+                    {/* Contact Column */}
+                    <div className="flex flex-col gap-4">
+                        <div className="w-fit md:mx-auto space-y-4">
+                            <h3 className="text-primary font-display text-lg tracking-wide uppercase">Connect</h3>
+                            <div className="flex flex-col gap-3">
+                                <a
+                                    href="tel:+917082771077"
+                                    className="flex items-center gap-3 text-gray-400 hover:text-white group transition-colors font-mono text-sm"
+                                >
+                                    <span className="p-2 border border-primary/20 rounded-md bg-transparent group-hover:bg-primary/10 transition-colors">
+                                        <Phone className="w-4 h-4 text-primary" />
+                                    </span>
+                                    +91 7082771077
+                                </a>
+                                <a
+                                    href="mailto:Ranjanguptajeff@gmail.com"
+                                    className="flex items-center gap-3 text-gray-400 hover:text-white group transition-colors font-mono text-sm"
+                                >
+                                    <span className="p-2 border border-primary/20 rounded-md bg-transparent group-hover:bg-primary/10 transition-colors">
+                                        <Mail className="w-4 h-4 text-primary" />
+                                    </span>
+                                    Ranjanguptajeff@gmail.com
+                                </a>
+                            </div>
                         </div>
                     </div>
 
