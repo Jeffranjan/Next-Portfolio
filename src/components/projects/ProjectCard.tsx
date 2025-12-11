@@ -17,7 +17,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
-            className="group relative h-full bg-[#0a0a0a] border border-white/10 rounded-lg overflow-hidden hover:border-primary/50 transition-colors font-mono"
+            className="group relative h-full flex flex-col bg-[#0a0a0a] border border-white/10 rounded-lg overflow-hidden hover:border-primary/50 transition-colors font-mono"
         >
             <Link href={`/projects/${project.id}`} className="absolute inset-0 z-10" aria-label={`View ${project.title}`} />
 
@@ -34,7 +34,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             </div>
 
             {/* Content */}
-            <div className="p-6 flex flex-col h-full relative">
+            <div className="p-6 flex-1 flex flex-col relative">
                 <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">
                         <span className="text-secondary">const</span> {project.title}
