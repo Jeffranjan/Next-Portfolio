@@ -61,7 +61,7 @@ export default function Navbar() {
                 "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
                 scrolled
                     ? "bg-background/80 backdrop-blur-md border-primary/20 py-2"
-                    : "bg-transparent py-4"
+                    : "bg-background/80 md:bg-transparent backdrop-blur-md md:backdrop-blur-none border-primary/20 md:border-transparent py-4"
             )}
         >
             <div className="container mx-auto px-6 md:px-20 flex items-center justify-between">
@@ -99,9 +99,13 @@ export default function Navbar() {
                         </Link>
                     ))}
 
-                    <button className="px-4 py-2 border border-primary/50 text-primary text-xs font-mono hover:bg-primary/10 transition-colors uppercase tracking-widest">
+                    <a
+                        href="/download_cv.pdf"
+                        download="Ranjan_Gupta_Resume.pdf"
+                        className="px-4 py-2 border border-primary/50 text-primary text-xs font-mono hover:bg-primary/10 transition-colors uppercase tracking-widest"
+                    >
                         Resume
-                    </button>
+                    </a>
                 </div>
 
                 {/* Mobile Menu Button */}
@@ -122,24 +126,26 @@ export default function Navbar() {
                         exit={{ opacity: 0, height: 0 }}
                         className="md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-xl border-t border-primary/20 overflow-hidden"
                     >
-                        <div className="flex flex-col items-center justify-center h-full gap-8 p-8">
-                            {navItems.map((item, index) => (
-                                <motion.a
-                                    key={item.name}
-                                    href={item.href}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        handleNavClick(item.href);
-                                    }}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="text-2xl font-display text-gray-300 hover:text-primary flex items-center gap-4 group"
-                                >
-                                    <item.icon className="w-6 h-6 text-primary opacity-50 group-hover:opacity-100" />
-                                    {item.name}
-                                </motion.a>
-                            ))}
+                        <div className="flex flex-col items-center justify-start h-full pt-32">
+                            <div className="flex flex-col items-start gap-8 w-64">
+                                {navItems.map((item, index) => (
+                                    <motion.a
+                                        key={item.name}
+                                        href={item.href}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            handleNavClick(item.href);
+                                        }}
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: index * 0.1 }}
+                                        className="text-3xl font-display text-gray-300 hover:text-primary flex items-center gap-6 group w-full"
+                                    >
+                                        <item.icon className="w-8 h-8 text-primary opacity-50 group-hover:opacity-100 transition-opacity" />
+                                        {item.name}
+                                    </motion.a>
+                                ))}
+                            </div>
                         </div>
                     </motion.div>
                 )}
