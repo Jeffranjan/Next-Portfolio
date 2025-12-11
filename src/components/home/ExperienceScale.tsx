@@ -25,7 +25,7 @@ const experienceData = [
 
 export default function ExperienceScale() {
     return (
-        <section className="py-20 px-6 md:px-20 w-full relative z-10 bg-[#050505]">
+        <section id="experience" className="py-20 px-6 md:px-20 w-full relative z-10 bg-[#050505]">
             <div className="flex flex-col gap-2 mb-16 font-mono">
                 <div className="flex items-center gap-2 text-gray-500 text-sm">
                     <span className="text-primary">$</span> git log --oneline --graph

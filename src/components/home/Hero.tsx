@@ -8,7 +8,7 @@ import { ArrowRight, Download } from "lucide-react";
 
 export default function Hero() {
     return (
-        <section className="relative w-full h-screen flex flex-col md:flex-row items-center justify-between px-6 md:px-20 overflow-hidden">
+        <section id="hero" className="relative w-full h-screen flex flex-col md:flex-row items-center justify-between px-6 md:px-20 overflow-hidden">
 
             {/* Text Content */}
             <motion.div

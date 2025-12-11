@@ -5,7 +5,7 @@ import ProjectCard from "./ProjectCard";
 
 export default function ProjectGrid() {
     return (
-        <section className="py-20 px-6 md:px-20 w-full relative z-10">
+        <section id="projects" className="py-20 px-6 md:px-20 w-full relative z-10">
             <div className="flex flex-col gap-2 mb-12">
                 <h2 className="text-primary tracking-widest text-sm font-semibold uppercase">
                     Selected Works

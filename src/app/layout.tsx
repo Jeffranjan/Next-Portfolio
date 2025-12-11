@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Orbitron } from "next/font/google"; // Generic futuristic font
 import "./globals.css";
+import Navbar from "@/components/layout/Navbar";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${jetbrainsMono.variable} ${orbitron.variable} antialiased`}>
       <body className="bg-background text-foreground overflow-x-hidden selection:bg-primary selection:text-black font-mono" suppressHydrationWarning>
+        <Navbar />
         {children}
       </body>
     </html>
