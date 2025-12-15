@@ -18,6 +18,8 @@ const orbitron = Orbitron({
   display: "swap",
 });
 
+import ClientLoader from "@/components/layout/ClientLoader";
+
 export const metadata: Metadata = {
   title: "Ranjan's Portfolio",
   description: "Next.js + Three.js Portfolio",
@@ -31,10 +33,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${jetbrainsMono.variable} ${orbitron.variable} antialiased`} suppressHydrationWarning>
       <body className="bg-background text-foreground overflow-x-hidden selection:bg-primary selection:text-black font-mono cursor-none" suppressHydrationWarning>
-        <Navbar />
-        <MagneticCursor />
-        {children}
-        <Footer />
+        <ClientLoader>
+          <Navbar />
+          <MagneticCursor />
+          {children}
+          <Footer />
+        </ClientLoader>
       </body>
     </html>
   );
