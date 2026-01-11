@@ -2,34 +2,7 @@
 
 import { motion } from "framer-motion";
 
-const experienceData = [
-    {
-        year: "Oct 2024 - Present",
-        role: "Full-Stack Developer",
-        company: "Freelancing",
-        description: "Delivered multiple client web applications using React.js and Next.js, improving overall UI/UX and engagement. Currently developing a full-stack e-commerce platform with admin analytics using React, Redux, Node.js, Express.js, MongoDB and Supabase to optimize inventory, cart, and payment workflows. Additionally, provided backend support and security for healthcare applications, strengthening IT operations and system reliability.",
-    },
-    {
-        year: "Jan 2024 - Sep 2024",
-        role: "Backend Developer",
-        company: "Grow Academy Pvt. Ltd.",
-        description: "Managed full-stack development for internal web applications using Node.js, Express, and MongoDB, improving system efficiency by 40%. Led the complete project lifecycle, including requirement analysis, RESTful API development, frontend integration, testing, and deployment. Also introduced best practices for version control and code reviews to enhance team workflow and code quality.",
-    },
-    {
-        year: "Jan 2023 - Dec 2023",
-        role: "Web & Databases Management",
-        company: "digiDZN (digiCart India Pvt. Ltd.",
-        description: "Designed and developed responsive web interfaces using HTML5, CSS3, and JavaScript, increasing user engagement by 45% through improved UI design. Managed and optimized a 10,000+ record Freshdesk CRM database, enhancing data workflows and reducing ticket resolution time by 25%. Additionally, collaborated on SEO strategies for product pages, contributing to a 50% boost in organic search rankings.",
-    },
-    {
-        year: "Nov 2021 - Nov 2022",
-        role: "Web Developer Intern",
-        company: "Webpandits & Smarden | 30 Days Technologies Pvt. Ltd.",
-        description: "Assisted in developing and maintaining client websites while creating digital marketing graphics and UI elements for social campaigns. Additionally analyzed website performance metrics and prepared reports to guide improvements in design and content strategy.",
-    },
-];
-
-export default function ExperienceScale() {
+const ExperienceScale = ({ experience }: { experience: any[] }) => {
     return (
         <section id="experience" className="py-20 px-6 md:px-20 w-full relative z-10 bg-[#050505]">
             <div className="flex flex-col gap-2 mb-16 font-mono">
@@ -42,9 +15,9 @@ export default function ExperienceScale() {
             </div>
 
             <div className="max-w-4xl relative space-y-0 font-mono">
-                {experienceData.map((exp, index) => (
+                {experience.map((exp, index) => (
                     <motion.div
-                        key={index}
+                        key={exp.id}
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.2 }}
@@ -54,7 +27,7 @@ export default function ExperienceScale() {
                         {/* Git Graph Lines */}
                         <div className="flex flex-col items-center flex-shrink-0 w-8">
                             <div className="w-2 h-2 rounded-full bg-secondary group-hover:bg-primary transition-colors mt-2" />
-                            {index !== experienceData.length - 1 && (
+                            {index !== experience.length - 1 && (
                                 <div className="w-0.5 h-full bg-gray-800 -mb-2" />
                             )}
                         </div>
@@ -65,13 +38,13 @@ export default function ExperienceScale() {
                                     {/* Deterministic "random" hash for SSR consistency */}
                                     {((exp.role.length + exp.company.length) * (index + 1) * 12345).toString(16).substring(0, 7)}
                                 </span>
-                                {index === 0 && (
+                                {exp.is_head && (
                                     <span className="text-yellow-500 text-xs">
                                         (HEAD -{'>'} master, origin/master)
                                     </span>
                                 )}
                                 <span className="text-gray-500 text-xs sm:ml-auto">
-                                    {exp.year}
+                                    {exp.year_range}
                                 </span>
                             </div>
 
@@ -91,3 +64,5 @@ export default function ExperienceScale() {
         </section>
     );
 }
+
+export default ExperienceScale;

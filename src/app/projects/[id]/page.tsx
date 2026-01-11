@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { projects } from "@/data/projects";
+import { getProjectById, getProjects } from "@/lib/api";
 import Scene from "@/components/canvas/Scene";
 import ProjectScene from "@/components/canvas/ProjectScene";
 import { ArrowLeft, Github, ExternalLink } from "lucide-react";
@@ -10,6 +10,7 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
+    const projects = await getProjects();
     return projects.map((project) => ({
         id: project.id,
     }));
@@ -17,7 +18,7 @@ export async function generateStaticParams() {
 
 export default async function ProjectDetail({ params }: PageProps) {
     const { id } = await params;
-    const project = projects.find((p) => p.id === id);
+    const project = await getProjectById(id);
 
     if (!project) {
         notFound();
@@ -42,7 +43,7 @@ export default async function ProjectDetail({ params }: PageProps) {
                                 {project.title}
                             </h1>
                             <div className="flex flex-wrap gap-3">
-                                {project.tags.map((tag) => (
+                                {project.tags.map((tag: string) => (
                                     <span key={tag} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-primary text-sm font-mono">
                                         {tag}
                                     </span>

@@ -1,9 +1,7 @@
-"use client";
-
-import { projects } from "@/data/projects";
 import ProjectCard from "./ProjectCard";
+import { Project } from "@/data/projects";
 
-export default function ProjectGrid() {
+export default function ProjectGrid({ projects }: { projects: Project[] }) {
     return (
         <section id="projects" className="py-20 px-6 md:px-20 w-full relative z-10">
             <div className="flex flex-col gap-2 mb-12">

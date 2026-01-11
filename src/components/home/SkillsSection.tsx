@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { skills } from "@/data/skills";
+import { Skill } from "@/data/skills";
 import { Atom, Cloud, Code, Database, GitBranch, Globe, Move, Sparkles, Wind } from "lucide-react";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
@@ -18,7 +18,7 @@ const iconMap: Record<string, any> = {
     GitBranch: GitBranch
 };
 
-const SkillCard = ({ skill, index }: { skill: typeof skills[0], index: number }) => {
+const SkillCard = ({ skill, index }: { skill: Skill, index: number }) => {
     const cardRef = useRef<HTMLDivElement>(null);
     const borderRef = useRef<HTMLDivElement>(null);
     const Icon = iconMap[skill.icon] || Code;
@@ -158,7 +158,7 @@ const SkillCard = ({ skill, index }: { skill: typeof skills[0], index: number })
     );
 };
 
-export default function SkillsSection() {
+export default function SkillsSection({ skills }: { skills: Skill[] }) {
     return (
         <section id="skills" className="relative w-full py-20 px-6 md:px-20 overflow-hidden bg-background">
 

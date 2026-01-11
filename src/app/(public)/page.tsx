@@ -3,14 +3,19 @@ import SkillsSection from "@/components/home/SkillsSection";
 import ProjectGrid from "@/components/projects/ProjectGrid";
 import ExperienceScale from "@/components/home/ExperienceScale";
 import ContactForm from "@/components/contact/ContactForm";
+import { getProjects, getSkills, getExperience } from "@/lib/api";
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getProjects();
+  const skills = await getSkills();
+  const experience = await getExperience();
+
   return (
     <main className="min-h-screen w-full relative bg-background">
       <Hero />
-      <SkillsSection />
-      <ProjectGrid />
-      <ExperienceScale />
+      <SkillsSection skills={skills} />
+      <ProjectGrid projects={projects} />
+      <ExperienceScale experience={experience} />
       <ContactForm />
     </main>
   );
