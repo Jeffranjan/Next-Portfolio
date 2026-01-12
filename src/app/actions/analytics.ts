@@ -1,10 +1,10 @@
 'use server'
 
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { headers } from 'next/headers'
 
 export async function trackView(data: { path: string; referrer: string; session_id: string }) {
-    const supabase = await createClient()
+    const supabase = createAdminClient()
 
     // We can assume strict RLS policies allow anonymous inserts
     await supabase.from('page_views').insert({
@@ -21,7 +21,7 @@ export async function trackVisitor(data: {
     browser: string;
     os: string
 }) {
-    const supabase = await createClient()
+    const supabase = createAdminClient()
 
     // Use ignoreDuplicates (on conflict) to avoid error if session already exists
     // But supabase-js .insert() doesn't have onConflict unless we use upsert
@@ -44,7 +44,7 @@ export async function trackVisitor(data: {
 }
 
 export async function trackEvent(data: { event_name: string; event_data: any; session_id: string }) {
-    const supabase = await createClient()
+    const supabase = createAdminClient()
 
     await supabase.from('events').insert({
         event_name: data.event_name,
