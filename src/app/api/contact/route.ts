@@ -13,12 +13,12 @@ export async function POST(req: Request) {
 
         const { data, error } = await resend.emails.send({
             // NOTE: In production, use a domain verified in your Resend dashboard
-            from: "Portfolio <onboarding@resend.dev>",
-            to: [process.env.CONTACT_EMAIL || "ranjanguptajeff@gmail.com"], // Fallback for safety
+            from: "Portfolio <contact@ranjangupta.online>",
+            to: [process.env.CONTACT_EMAIL as string],
             replyTo: email,
             subject: `Portfolio Contact: ${name}`,
             html: `
-                <div>
+                <div
                     <h2>New Contact Form Submission</h2>
                     <p><strong>Name:</strong> ${name}</p>
                     <p><strong>Email:</strong> ${email}</p>
