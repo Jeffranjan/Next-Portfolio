@@ -159,6 +159,8 @@ const SkillCard = ({ skill, index }: { skill: Skill, index: number }) => {
 };
 
 export default function SkillsSection({ skills }: { skills: Skill[] }) {
+    if (!skills || skills.length === 0) return null;
+
     return (
         <section id="skills" className="relative w-full py-20 px-6 md:px-20 overflow-hidden bg-background">
 

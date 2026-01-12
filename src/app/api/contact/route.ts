@@ -12,7 +12,8 @@ export async function POST(req: Request) {
         }
 
         const { data, error } = await resend.emails.send({
-            from: "Portfolio <onboarding@resend.dev>", // TODO: Replace with your verified domain
+            // NOTE: In production, use a domain verified in your Resend dashboard
+            from: "Portfolio <onboarding@resend.dev>",
             to: [process.env.CONTACT_EMAIL || "ranjanguptajeff@gmail.com"], // Fallback for safety
             replyTo: email,
             subject: `Portfolio Contact: ${name}`,

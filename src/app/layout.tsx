@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   description: "Next.js + Three.js Portfolio",
 };
 
+import AnalyticsTracker from "@/components/analytics/AnalyticsTracker";
+import { Toaster } from 'sonner';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,6 +30,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${jetbrainsMono.variable} ${orbitron.variable} antialiased`} suppressHydrationWarning>
       <body className="bg-background text-foreground overflow-x-hidden selection:bg-primary selection:text-black font-mono cursor-none" suppressHydrationWarning>
+        <AnalyticsTracker />
+        <Toaster position="top-right" theme="dark" />
         {children}
       </body>
     </html>

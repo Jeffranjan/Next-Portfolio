@@ -42,12 +42,15 @@ export async function middleware(request: NextRequest) {
 
     // 3. Prevent Re-Login
     // If accessing /admin/login and ALREADY logged in -> Redirect to Admin Dashboard
+    // DISABLED: Causes redirect loop on logout if session persists briefly.
+    /*
     if (url.pathname === '/admin/login') {
         if (user) {
             url.pathname = '/admin'
             return NextResponse.redirect(url)
         }
     }
+    */
 
     return supabaseResponse
 }

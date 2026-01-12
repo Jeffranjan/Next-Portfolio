@@ -4,14 +4,18 @@ import Scene from "@/components/canvas/Scene";
 import ProjectScene from "@/components/canvas/ProjectScene";
 import { ArrowLeft, Github, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { createAdminClient } from "@/lib/supabase/admin";
+import Navbar from "@/components/layout/Navbar";
+import MagneticCursor from "@/components/common/MagneticCursor";
 
 interface PageProps {
     params: Promise<{ id: string }>;
 }
 
 export async function generateStaticParams() {
-    const projects = await getProjects();
-    return projects.map((project) => ({
+    const supabase = createAdminClient();
+    const projects = await getProjects(supabase);
+    return projects.map((project: any) => ({
         id: project.id,
     }));
 }
@@ -26,6 +30,8 @@ export default async function ProjectDetail({ params }: PageProps) {
 
     return (
         <main className="min-h-screen bg-background relative selection:bg-primary selection:text-black">
+            <MagneticCursor />
+            <Navbar />
             {/* Navigation */}
             <nav className="absolute top-24 left-0 w-full lg:w-1/2 px-6 lg:px-20 z-50">
                 <Link href="/" className="flex items-center gap-2 text-white/70 hover:text-white transition-colors group">
