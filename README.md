@@ -9,38 +9,52 @@ A cutting-edge, futuristic personal portfolio website built with Next.js, TypeSc
 ## 🚀 Features
 
 -   **Futuristic "Neo-Arc" Design**: Terminal-inspired UI, glassmorphism, and neon aesthetics.
--   **Interactive 3D Elements**: Powered by Three.js and React Three Fiber.
--   **Smooth Animations**: Fluid transitions using Framer Motion and GSAP.
--   **Responsive Layout**: Fully optimized for mobile, tablet, and desktop devices.
--   **Dynamic Project Showcase**:  Rich interactions for displaying projects with tilt effects.
--   **Contact Integration**:  Functional contact form using Resend for emails.
+-   **Comprehensive Admin Dashboard**:
+    -   **Content Management**: Full CRUD operations for Projects, Experiences, Skills, and Products.
+    -   **Real-time Analytics**: Live order tracking and visitor insights powered by Supabase Realtime.
+    -   **Audit & Trash System**: Robust data safety with activity logging, soft-deletes, and restore capabilities.
+-   **Interactive 3D Elements**: Immersive scenes powered by Three.js and React Three Fiber.
+-   **Smooth Animations**: Fluid transitions and micro-interactions using Framer Motion and GSAP.
+-   **Advanced Product Management**: 
+    -   Multi-image support with drag-and-drop uploads.
+    -   Detailed product attributes and specifications.
+-   **Repair Services Module**: Dedicated section for PC/Laptop repair service bookings.
+-   **Responsive Layout**: Fully optimized pixel-perfect design for mobile, tablet, and desktop.
+-   **Contact Integration**: Secure contact form handling with Resend.
 
 ## 🛠️ Tech Stack
 
 -   **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
 -   **Language**: [TypeScript](https://www.typescriptlang.org/)
--   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
--   **Animations**:
+-   **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+-   **Backend & Database**:
+    -   [Supabase](https://supabase.com/) (Postgres, Auth, Storage, Realtime)
+-   **Animations & 3D**:
     -   [Framer Motion](https://www.framer.com/motion/)
     -   [GSAP](https://greensock.com/gsap/)
--   **3D Graphics**:
     -   [Three.js](https://threejs.org/)
     -   [React Three Fiber](https://docs.pmnd.rs/react-three-fiber)
-    -   [@react-three/drei](https://github.com/pmndrs/drei)
+-   **UI Components & Utilities**:
+    -   [Recharts](https://recharts.org/) (Data Visualization)
+    -   [Sonner](https://sonner.emilkowal.ski/) (Toast Notifications)
+    -   [Lucide React](https://lucide.dev/) (Icons)
 -   **Email Service**: [Resend](https://resend.com/)
--   **Icons**: [Lucide React](https://lucide.dev/)
 
 ## 📂 Project Structure
 
 ```bash
 src/
-├── app/              # Next.js App Router pages and layouts
+├── app/              # Next.js App Router
+│   ├── (public)/     # Public facing pages (Home, Projects, etc.)
+│   ├── admin/        # Protected Admin Dashboard routes & features
+│   └── api/          # API Routes for database interactions
 ├── components/       # Reusable UI components
-│   ├── canvas/       # 3D scenes and canvas components
-│   ├── ui/           # Generic UI elements (buttons, cards, etc.)
-├── hooks/            # Custom React hooks
-├── lib/              # Utility functions and configurations
-└── styles/           # Global styles and tailwind config
+│   ├── canvas/       # 3D scenes and canvas elements
+│   ├── ui/           # Design system components
+│   └── admin/        # Admin-specific components
+├── hooks/            # Custom React hooks (realtime, auth, etc.)
+├── lib/              # Utilities, Supabase client, type definitions
+└── styles/           # Global styles and configuration
 ```
 
 ## 📦 Getting Started
@@ -48,6 +62,17 @@ src/
 ### Prerequisites
 
 Ensure you have [Node.js](https://nodejs.org/) installed on your machine.
+
+### Environment Setup
+
+Create a `.env.local` file in the root directory and add your credentials:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+RESEND_API_KEY=your_resend_api_key
+# Add other necessary keys for admin access
+```
 
 ### Installation
 
@@ -74,7 +99,7 @@ Ensure you have [Node.js](https://nodejs.org/) installed on your machine.
     npm run dev
     ```
 
-    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    Open [http://localhost:3000](http://localhost:3000) with your browser.
 
 ## 🚀 Deployment
 

@@ -4,7 +4,6 @@ import Scene from "@/components/canvas/Scene";
 import ProjectScene from "@/components/canvas/ProjectScene";
 import { ArrowLeft, Github, ExternalLink } from "lucide-react";
 import Link from "next/link";
-import { createAdminClient } from "@/lib/supabase/admin";
 import Navbar from "@/components/layout/Navbar";
 import MagneticCursor from "@/components/common/MagneticCursor";
 
@@ -13,8 +12,7 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-    const supabase = createAdminClient();
-    const projects = await getProjects(supabase);
+    const projects = await getProjects();
     return projects.map((project: any) => ({
         id: project.id,
     }));
