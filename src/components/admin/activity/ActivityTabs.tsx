@@ -12,11 +12,11 @@ export default function ActivityTabs({ logs, trashItems }: { logs: any[], trashI
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center gap-1 p-1 bg-black/40 border border-[#333] rounded-lg w-fit">
+            <div className="flex items-center gap-1 p-1 bg-black/40 border border-[#333] rounded-lg w-full md:w-fit">
                 <button
                     onClick={() => setActiveTab('audits')}
                     className={cn(
-                        "flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all",
+                        "flex items-center justify-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all flex-1 md:flex-none",
                         activeTab === 'audits'
                             ? "bg-[#222] text-white shadow-sm"
                             : "text-gray-400 hover:text-white"
@@ -28,7 +28,7 @@ export default function ActivityTabs({ logs, trashItems }: { logs: any[], trashI
                 <button
                     onClick={() => setActiveTab('trash')}
                     className={cn(
-                        "flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all",
+                        "flex items-center justify-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all flex-1 md:flex-none",
                         activeTab === 'trash'
                             ? "bg-[#222] text-white shadow-sm"
                             : "text-gray-400 hover:text-white"

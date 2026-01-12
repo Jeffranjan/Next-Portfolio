@@ -2,7 +2,6 @@
 
 import { createAdminClient } from '@/lib/supabase/admin'
 import { revalidatePath, revalidateTag } from 'next/cache'
-import { redirect } from 'next/navigation'
 import { requireAdmin } from '@/lib/auth/admin'
 import { randomUUID } from 'crypto'
 
@@ -41,7 +40,8 @@ export async function createSkill(prevState: any, formData: FormData) {
 
     revalidateTag('skills', 'default')
     revalidatePath('/admin/skills')
-    redirect('/admin/skills')
+
+    return { success: true }
 }
 
 export async function updateSkill(id: string, prevState: any, formData: FormData) {
@@ -73,7 +73,8 @@ export async function updateSkill(id: string, prevState: any, formData: FormData
 
     revalidateTag('skills', 'default')
     revalidatePath('/admin/skills')
-    redirect('/admin/skills')
+
+    return { success: true }
 }
 
 export async function deleteSkill(id: string) {

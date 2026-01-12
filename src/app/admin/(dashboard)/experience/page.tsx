@@ -76,7 +76,7 @@ export default async function AdminExperiencePage() {
                                         </div>
                                     </div>
 
-                                    <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div className="flex gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                                         <Link
                                             href={`/admin/experience/${exp.id}/edit`}
                                             className="p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors"

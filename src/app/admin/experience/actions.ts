@@ -2,7 +2,6 @@
 
 import { createAdminClient } from '@/lib/supabase/admin'
 import { revalidatePath, revalidateTag } from 'next/cache'
-import { redirect } from 'next/navigation'
 import { requireAdmin } from '@/lib/auth/admin'
 
 export async function createExperience(prevState: any, formData: FormData) {
@@ -49,7 +48,8 @@ export async function createExperience(prevState: any, formData: FormData) {
 
     revalidateTag('experience', 'default')
     revalidatePath('/admin/experience')
-    redirect('/admin/experience')
+
+    return { success: true }
 }
 
 export async function updateExperience(id: string, prevState: any, formData: FormData) {
@@ -94,7 +94,8 @@ export async function updateExperience(id: string, prevState: any, formData: For
 
     revalidateTag('experience', 'default')
     revalidatePath('/admin/experience')
-    redirect('/admin/experience')
+
+    return { success: true }
 }
 
 export async function deleteExperience(id: string) {

@@ -34,7 +34,7 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <AnalyticsTracker />
         </Suspense>
-        <Toaster position="top-right" theme="dark" />
+        <Toaster position="bottom-right" theme="dark" />
         {children}
       </body>
     </html>

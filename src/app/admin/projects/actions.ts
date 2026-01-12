@@ -2,7 +2,6 @@
 
 import { createAdminClient } from '@/lib/supabase/admin'
 import { revalidatePath, revalidateTag } from 'next/cache'
-import { redirect } from 'next/navigation'
 import { requireAdmin } from '@/lib/auth/admin'
 
 const BUCKET_NAME = 'project-images'
@@ -70,9 +69,11 @@ export async function createProject(prevState: any, formData: FormData) {
     await logAdminAction('CREATE', 'projects', insertData.id, { title, live_url }, 'admin-action')
 
     // 5. Revalidate and Redirect
+    // 5. Revalidate
     revalidatePath('/admin/projects')
     revalidateTag('projects', 'default')
-    redirect('/admin/projects')
+
+    return { success: true }
 }
 
 export async function updateProject(id: string, prevState: any, formData: FormData) {
@@ -134,7 +135,8 @@ export async function updateProject(id: string, prevState: any, formData: FormDa
 
     revalidatePath('/admin/projects')
     revalidateTag('projects', 'default')
-    redirect('/admin/projects')
+
+    return { success: true }
 }
 
 export async function deleteProject(id: string) {

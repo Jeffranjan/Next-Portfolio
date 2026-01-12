@@ -10,7 +10,7 @@ export default function AdminOverviewAnalytics({ data }: { data: AnalyticsSummar
     const graphData = data.trafficTrend.map((val, i) => ({ i, val }))
 
     return (
-        <div className="bg-black/40 border border-[#333] rounded-xl p-6 relative overflow-hidden group">
+        <div className="bg-black/40 border border-[#333] rounded-xl p-4 md:p-6 relative overflow-hidden group">
             {/* Header */}
             <div className="flex justify-between items-start mb-6">
                 <div>
@@ -29,7 +29,7 @@ export default function AdminOverviewAnalytics({ data }: { data: AnalyticsSummar
                 </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
                 {/* Metric 1: Visitors */}
                 <div>
                     <div className="flex items-end gap-2 mb-1">
@@ -76,7 +76,7 @@ export default function AdminOverviewAnalytics({ data }: { data: AnalyticsSummar
                 </div>
 
                 {/* Metric 4: Top Page */}
-                <div className="border-l border-[#333] pl-6">
+                <div className="md:border-l border-[#333] md:pl-6">
                     <div className="flex flex-col h-full justify-center">
                         <p className="text-[10px] text-gray-500 font-mono uppercase tracking-wider mb-1">Most Visited Page</p>
                         {data.topPage ? (

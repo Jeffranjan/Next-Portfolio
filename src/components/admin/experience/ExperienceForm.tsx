@@ -1,9 +1,10 @@
 'use client'
 
-import { useActionState } from 'react'
+import { useActionState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Loader2, Save, Calendar, GitCommit } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { toast } from 'sonner' // Added import
 
 type ExperienceFormProps = {
     initialData?: any
@@ -12,11 +13,22 @@ type ExperienceFormProps = {
 
 const initialState = {
     error: '',
+    success: false
 }
 
 export default function ExperienceForm({ initialData, action }: ExperienceFormProps) {
     const router = useRouter()
     const [state, formAction, isPending] = useActionState(action, initialState)
+
+    useEffect(() => {
+        if (state?.success) {
+            toast.success(initialData ? 'Experience updated successfully' : 'Experience created successfully')
+            router.push('/admin/experience')
+            router.refresh()
+        } else if (state?.error) {
+            toast.error(state.error)
+        }
+    }, [state, initialData, router])
 
     return (
         <form action={formAction} className="space-y-8 max-w-2xl">
@@ -117,7 +129,7 @@ export default function ExperienceForm({ initialData, action }: ExperienceFormPr
                 </div>
             </div>
 
-            <div className="flex items-center justify-end gap-4">
+            <div className="flex items-center justify-end gap-4 fixed bottom-0 left-0 right-0 bg-[#050505]/95 border-t border-[#333] p-4 z-40 md:static md:bg-transparent md:border-0 md:p-0">
                 <button
                     type="button"
                     onClick={() => router.back()}
@@ -129,7 +141,7 @@ export default function ExperienceForm({ initialData, action }: ExperienceFormPr
                     type="submit"
                     disabled={isPending}
                     className={cn(
-                        "px-6 py-2 rounded-lg bg-primary text-black font-bold font-mono text-sm hover:bg-primary/90 transition-all flex items-center gap-2",
+                        "px-6 py-2 rounded-lg bg-primary text-black font-bold font-mono text-sm hover:bg-primary/90 transition-all flex items-center gap-2 w-full md:w-auto justify-center",
                         isPending && "opacity-50 cursor-not-allowed"
                     )}
                 >

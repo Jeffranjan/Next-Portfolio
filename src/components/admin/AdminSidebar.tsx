@@ -65,7 +65,7 @@ export default function AdminSidebar() {
             </aside>
 
             {/* Mobile Bottom Navigation */}
-            <nav className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-[#050505]/90 backdrop-blur-xl border-t border-[#333] z-50 flex items-center justify-around px-2">
+            <nav className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-[#050505]/95 backdrop-blur-xl border-t border-[#333] z-50 flex items-center justify-around px-2 pb-[env(safe-area-inset-bottom)] box-content">
                 {navItems.map((item) => {
                     const isActive = pathname === item.href;
                     return (
@@ -73,9 +73,9 @@ export default function AdminSidebar() {
                             key={item.href}
                             href={item.href}
                             className={cn(
-                                "flex flex-col items-center justify-center p-2 rounded-lg transition-all duration-200 group text-xs font-mono gap-1",
+                                "flex flex-col items-center justify-center p-2 rounded-lg transition-all duration-200 group text-xs font-mono gap-1 active:scale-95",
                                 isActive
-                                    ? "text-primary"
+                                    ? "text-primary bg-primary/10"
                                     : "text-gray-500 hover:text-white"
                             )}
                         >

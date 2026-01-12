@@ -12,7 +12,6 @@ export async function POST(req: Request) {
         }
 
         const { data, error } = await resend.emails.send({
-            // NOTE: In production, use a domain verified in your Resend dashboard
             from: "Portfolio <contact@ranjangupta.online>",
             to: [process.env.CONTACT_EMAIL as string],
             replyTo: email,

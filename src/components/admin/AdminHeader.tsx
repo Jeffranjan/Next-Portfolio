@@ -8,8 +8,13 @@ export default function AdminHeader({ user }: { user: User }) {
     return (
         <header className="h-16 border-b border-[#333] bg-black/20 backdrop-blur-sm flex items-center justify-between px-6 sticky top-0 z-10">
             <div className="flex items-center gap-4 text-gray-500 text-sm font-mono">
-                <span className="text-primary">$</span>
-                <span className="typing-effect">sys.status --check</span>
+                <div className="md:hidden flex items-center gap-2">
+                    <span className="text-primary font-bold">ADMIN_OS</span>
+                </div>
+                <div className="hidden md:flex items-center gap-4">
+                    <span className="text-primary">$</span>
+                    <span className="typing-effect">sys.status --check</span>
+                </div>
             </div>
 
             <div className="flex items-center gap-6">

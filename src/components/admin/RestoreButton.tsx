@@ -3,6 +3,7 @@
 import { restoreItem } from '@/app/admin/actions'
 import { RotateCcw } from 'lucide-react'
 import { useTransition } from 'react'
+import { toast } from 'sonner'
 
 export default function RestoreButton({ entity, id }: { entity: string, id: string }) {
     const [isPending, startTransition] = useTransition()
@@ -13,7 +14,9 @@ export default function RestoreButton({ entity, id }: { entity: string, id: stri
         startTransition(async () => {
             const result = await restoreItem(entity, id)
             if (result?.error) {
-                alert(result.error)
+                toast.error(result?.error)
+            } else {
+                toast.success('Item restored successfully')
             }
         })
     }

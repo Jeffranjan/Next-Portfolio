@@ -69,10 +69,10 @@ export default async function AdminProjectsPage() {
                                         No Image
                                     </div>
                                 )}
-                                <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div className="absolute top-2 right-2 flex gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                                     <Link
                                         href={`/admin/projects/${project.id}/edit`}
-                                        className="p-2 bg-black/80 text-white rounded-lg hover:text-primary transition-colors border border-gray-800"
+                                        className="p-2 bg-black/80 text-white rounded-lg hover:text-primary transition-colors border border-gray-800 active:scale-90"
                                     >
                                         <Edit2 className="w-4 h-4" />
                                     </Link>

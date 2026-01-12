@@ -33,8 +33,8 @@ export default function AuditLogList({ logs }: { logs: any[] }) {
     return (
         <div className="bg-black/40 border border-[#333] rounded-xl overflow-hidden">
             <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
-                    <thead>
+                <table className="w-full text-left border-collapse block md:table">
+                    <thead className="hidden md:table-header-group">
                         <tr className="border-b border-[#333] bg-black/60">
                             <th className="p-4 font-mono text-xs text-gray-500 uppercase tracking-wider">Timestamp</th>
                             <th className="p-4 font-mono text-xs text-gray-500 uppercase tracking-wider">Admin</th>
@@ -43,18 +43,19 @@ export default function AuditLogList({ logs }: { logs: any[] }) {
                             <th className="p-4 font-mono text-xs text-gray-500 uppercase tracking-wider w-full">Details</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-[#222]">
+                    <tbody className="divide-y divide-[#222] block md:table-row-group space-y-4 md:space-y-0 p-4 md:p-0">
                         {logs?.map((log) => (
-                            <tr key={log.id} className="hover:bg-[#111] transition-colors group">
-                                <td className="p-4 font-mono text-xs text-gray-500 whitespace-nowrap">
+                            <tr key={log.id} className="hover:bg-[#111] transition-colors group block md:table-row bg-black/40 md:bg-transparent border md:border-0 border-[#333] rounded-xl overflow-hidden mb-4 md:mb-0">
+                                <td className="p-4 font-mono text-xs text-gray-500 whitespace-nowrap block md:table-cell border-b md:border-b-0 border-[#333/50]">
                                     <span title={new Date(log.created_at).toLocaleString()}>
                                         {timeAgo(log.created_at)}
                                     </span>
                                 </td>
-                                <td className="p-4 font-mono text-xs text-white">
+                                <td className="p-4 font-mono text-xs text-white block md:table-cell border-b md:border-b-0 border-[#333/50]">
+                                    <span className="md:hidden text-gray-500 mr-2">User:</span>
                                     {log.admin_email.split('@')[0]}
                                 </td>
-                                <td className="p-4">
+                                <td className="p-4 block md:table-cell border-b md:border-b-0 border-[#333/50]">
                                     <div className="flex items-center gap-2 font-mono text-xs font-bold">
                                         {getIcon(log.action)}
                                         <span className={
@@ -69,15 +70,16 @@ export default function AuditLogList({ logs }: { logs: any[] }) {
                                         </span>
                                     </div>
                                 </td>
-                                <td className="p-4 font-mono text-xs text-gray-300 uppercase">
+                                <td className="p-4 font-mono text-xs text-gray-300 uppercase block md:table-cell border-b md:border-b-0 border-[#333/50]">
+                                    <span className="md:hidden text-gray-500 mr-2">Entity:</span>
                                     {log.entity}
                                 </td>
-                                <td className="p-4 font-mono text-xs text-gray-400 break-all">
+                                <td className="p-4 font-mono text-xs text-gray-400 break-all block md:table-cell">
                                     {Object.entries(log.details || {}).map(([key, value]) => {
                                         if (key === 'soft_delete') return null
                                         if (typeof value === 'object') return null
                                         return (
-                                            <span key={key} className="mr-3">
+                                            <span key={key} className="mr-3 block md:inline">
                                                 <span className="text-gray-600">{key}:</span> <span className="text-gray-300">{String(value).substring(0, 30)}</span>
                                             </span>
                                         )
@@ -93,8 +95,8 @@ export default function AuditLogList({ logs }: { logs: any[] }) {
                             </tr>
                         ))}
                         {(!logs || logs.length === 0) && (
-                            <tr>
-                                <td colSpan={5} className="p-8 text-center text-gray-500 font-mono text-sm">
+                            <tr className="block md:table-row">
+                                <td colSpan={5} className="p-8 text-center text-gray-500 font-mono text-sm block md:table-cell">
                                     No activity recorded yet.
                                 </td>
                             </tr>

@@ -21,7 +21,7 @@ export default async function AdminDashboard() {
                 </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {/* Placeholder Cards - Keeping these as quick links */}
                 {['Projects', 'Skills', 'Experience'].map((item) => (
                     <Link

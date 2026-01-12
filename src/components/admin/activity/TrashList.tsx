@@ -5,6 +5,7 @@ import { permanentDelete } from '@/app/admin/trash/actions'
 import { restoreItem } from '@/app/admin/actions'
 import { Trash2, RotateCcw, AlertTriangle, Archive } from 'lucide-react'
 import { useTransition, useState } from 'react'
+import { toast } from 'sonner'
 
 function TrashItemRow({ item }: { item: TrashItem }) {
     const [isRestoring, startRestore] = useTransition()
@@ -12,7 +13,12 @@ function TrashItemRow({ item }: { item: TrashItem }) {
 
     const handleRestore = () => {
         startRestore(async () => {
-            await restoreItem(item.entity, item.id)
+            const result = await restoreItem(item.entity, item.id)
+            if (result?.error) {
+                toast.error(result.error)
+            } else {
+                toast.success('Item restored successfully')
+            }
         })
     }
 
@@ -20,7 +26,12 @@ function TrashItemRow({ item }: { item: TrashItem }) {
         const confirmed = prompt(`⚠ IRREVERSIBLE ACTION ⚠\n\nType DELETE to confirm permanent deletion of "${item.title}"`)
         if (confirmed === 'DELETE') {
             startDelete(async () => {
-                await permanentDelete(item.entity, item.id)
+                const result = await permanentDelete(item.entity, item.id)
+                if (result?.error) {
+                    toast.error(result.error)
+                } else {
+                    toast.success('Item permanently deleted')
+                }
             })
         }
     }
