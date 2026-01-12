@@ -11,10 +11,20 @@ export function useAnalytics() {
 
     useEffect(() => {
         // Simple session ID generation (UUID v4 style)
+        // Simple session ID generation (UUID v4 style) with fallback
         const getSessionId = () => {
             let sessionId = localStorage.getItem('analytics_session_id')
             if (!sessionId) {
-                sessionId = crypto.randomUUID()
+                // Fallback for environments where crypto.randomUUID is not available (e.g. non-secure contexts)
+                if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+                    sessionId = crypto.randomUUID()
+                } else {
+                    sessionId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                        const r = Math.random() * 16 | 0
+                        const v = c === 'x' ? r : (r & 0x3 | 0x8)
+                        return v.toString(16)
+                    })
+                }
                 localStorage.setItem('analytics_session_id', sessionId)
             }
             return sessionId

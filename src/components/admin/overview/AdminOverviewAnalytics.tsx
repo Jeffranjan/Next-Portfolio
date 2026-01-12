@@ -3,9 +3,11 @@
 import { AnalyticsSummary } from '@/app/admin/overview/actions'
 import { Activity, ArrowRight, BarChart3, Users, Zap } from 'lucide-react'
 import Link from 'next/link'
-import { Area, AreaChart, ResponsiveContainer } from 'recharts'
+import { Area, AreaChart } from 'recharts'
+import ChartContainer from '../analytics/ChartContainer'
 
 export default function AdminOverviewAnalytics({ data }: { data: AnalyticsSummary }) {
+    // Format trend data for Recharts
     // Format trend data for Recharts
     const graphData = data.trafficTrend.map((val, i) => ({ i, val }))
 
@@ -29,7 +31,7 @@ export default function AdminOverviewAnalytics({ data }: { data: AnalyticsSummar
                 </Link>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+            <div className="flex flex-col gap-6 md:grid md:grid-cols-4 md:gap-8">
                 {/* Metric 1: Visitors */}
                 <div>
                     <div className="flex items-end gap-2 mb-1">
@@ -45,19 +47,29 @@ export default function AdminOverviewAnalytics({ data }: { data: AnalyticsSummar
                     </div>
                     <p className="text-[10px] text-gray-500 font-mono uppercase tracking-wider">Page Views (30d)</p>
 
-                    {/* Absolute Sparkline Overlay */}
-                    <div className="absolute -bottom-2 -right-4 w-24 h-12 opacity-30">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <AreaChart data={graphData}>
-                                <Area
-                                    type="monotone"
-                                    dataKey="val"
-                                    stroke="#00ff41"
-                                    fill="#00ff41"
-                                    strokeWidth={2}
-                                />
-                            </AreaChart>
-                        </ResponsiveContainer>
+                    {/* Absolute Sparkline Overlay - Positioned safely */}
+                    <div className="absolute -bottom-2 -right-4 w-24 h-12 opacity-30 pointer-events-none">
+                        <div className="w-full h-full">
+                            {/* Absolute Sparkline Overlay - Positioned safely */}
+                            <div className="absolute -bottom-2 -right-4 w-24 h-12 opacity-30 pointer-events-none">
+                                <div className="w-full h-full">
+                                    <ChartContainer minHeight={0}>
+                                        {(width, height) => (
+                                            <AreaChart width={width} height={height} data={graphData}>
+                                                <Area
+                                                    type="monotone"
+                                                    dataKey="val"
+                                                    stroke="#00ff41"
+                                                    fill="#00ff41"
+                                                    strokeWidth={2}
+                                                    isAnimationActive={false} // Disable animation for stability
+                                                />
+                                            </AreaChart>
+                                        )}
+                                    </ChartContainer>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -76,7 +88,7 @@ export default function AdminOverviewAnalytics({ data }: { data: AnalyticsSummar
                 </div>
 
                 {/* Metric 4: Top Page */}
-                <div className="md:border-l border-[#333] md:pl-6">
+                <div className="pt-4 border-t border-[#333] md:pt-0 md:border-t-0 md:border-l md:pl-6">
                     <div className="flex flex-col h-full justify-center">
                         <p className="text-[10px] text-gray-500 font-mono uppercase tracking-wider mb-1">Most Visited Page</p>
                         {data.topPage ? (

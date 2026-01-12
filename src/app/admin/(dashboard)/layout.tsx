@@ -22,7 +22,7 @@ export default async function AdminLayout({
             <div className="flex-1 flex flex-col min-w-0 transition-all duration-300">
                 <AdminHeader user={user} />
 
-                <main className="flex-1 p-6 pb-24 md:pb-6 overflow-y-auto overflow-x-hidden relative">
+                <main className="flex-1 px-4 sm:px-6 lg:px-8 py-6 pb-24 md:pb-6 overflow-y-auto overflow-x-hidden relative">
                     {/* Subtle background grid effect */}
                     <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
                         style={{
