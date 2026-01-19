@@ -1,5 +1,5 @@
 import { getPublishedBlogs } from '@/lib/api/blogs'
-import BlogCard from '@/components/blogs/BlogCard'
+import BlogsList from '@/components/blogs/BlogsList'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { Metadata } from 'next'
@@ -11,8 +11,16 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600 // ISR: Revalidate every hour
 
-export default async function BlogsPage() {
-    const blogs = await getPublishedBlogs()
+export default async function BlogsPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+    const params = await searchParams
+    const sortBy = typeof params.sort === 'string' ? params.sort : 'latest'
+    const query = typeof params.q === 'string' ? params.q : ''
+
+    const blogs = await getPublishedBlogs({ sortBy, query })
 
     return (
         <div className="min-h-screen bg-black pt-24 pb-20">
@@ -41,18 +49,8 @@ export default async function BlogsPage() {
                     </p>
                 </div>
 
-                {/* Grid */}
-                {blogs.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {blogs.map((blog) => (
-                            <BlogCard key={blog.id} blog={blog} />
-                        ))}
-                    </div>
-                ) : (
-                    <div className="py-20 text-center border border-dashed border-[#222] rounded-xl bg-[#050505]">
-                        <p className="text-gray-500 font-mono">System.out.println("No logs found yet");</p>
-                    </div>
-                )}
+                {/* Interactivity wrapper */}
+                <BlogsList initialBlogs={blogs} />
             </div>
         </div>
     )

@@ -1,7 +1,7 @@
 'use server'
 
 import { createClient } from '@/lib/supabase/server'
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 export type Blog = {
@@ -116,13 +116,39 @@ export async function createBlog(formData: {
 
     if (!user) return { error: 'Unauthorized' }
 
+    // Auto-generate slug if missing
+    let finalSlug = formData.slug
+    if (!finalSlug && formData.title) {
+        finalSlug = formData.title
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)+/g, '')
+    }
+
+    if (!finalSlug) return { error: 'Slug is required' }
+
+    // Check availability
+    const { count } = await supabase
+        .from('blogs')
+        .select('id', { count: 'exact', head: true })
+        .eq('slug', finalSlug)
+
+    if (count && count > 0) {
+        return { error: 'Slug already exists. Please choose another.' }
+    }
+
+    // Calculate reading time
+    const readingTime = calculateReadingTime(formData.content)
+
     const { data, error } = await supabase
         .from('blogs')
         .insert([
             {
                 ...formData,
+                slug: finalSlug,
                 author_id: user.id,
                 content: formData.content || {},
+                reading_time: readingTime,
                 published_at: formData.status === 'published' ? new Date().toISOString() : null,
             },
         ])
@@ -141,8 +167,38 @@ export async function createBlog(formData: {
         status: data.status
     })
 
+    // @ts-expect-error Next.js 16 beta signature mismatch
+    revalidateTag('blogs')
     revalidatePath('/admin/blogs')
     return { success: true, id: data.id }
+}
+
+function calculateReadingTime(content: any): number {
+    if (!content) return 0
+    try {
+        const text = JSON.stringify(content)
+        const words = text.split(/\s+/).length
+        // JSON structure adds overhead, rough approximation:
+        // A better way is to traverse the TipTap JSON tree, but raw JSON length / ~8 is a decent heuristic for words 
+        // actually let's just grab all string values.
+        // Simple fallback: 200 words per minute.
+        // Accessing deep text is costly here without recursion.
+        // Let's rely on stringify length / 5 (avg word char) as a very rough proxy or just do JSON.stringify and regex for "text":"..."
+
+        let wordCount = 0
+        const str = JSON.stringify(content)
+        const matches = str.match(/"text":"(.*?)"/g)
+        if (matches) {
+            matches.forEach(m => {
+                wordCount += m.split(/\s+/).length
+            })
+        }
+
+        return Math.max(1, Math.ceil(wordCount / 200))
+
+    } catch (e) {
+        return 5 // default
+    }
 }
 
 export async function updateBlog(id: string, formData: Partial<Blog>) {
@@ -163,6 +219,11 @@ export async function updateBlog(id: string, formData: Partial<Blog>) {
     // content_json shouldn't be in updateData if not in schema, but spreading ...formData includes it.
     // We should delete it.
     delete updateData.content_json
+
+    // Recalculate reading time if content is updated
+    if (updateData.content) {
+        updateData.reading_time = calculateReadingTime(updateData.content)
+    }
 
     const { data, error } = await supabase
         .from('blogs')
@@ -215,10 +276,14 @@ export async function updateBlog(id: string, formData: Partial<Blog>) {
         changes: updateData
     })
 
+    // @ts-expect-error Next.js 16 beta signature mismatch
+    revalidateTag('blogs')
+    // @ts-expect-error Next.js 16 beta signature mismatch
+    revalidateTag(`blog:${data.slug}`)
     revalidatePath('/admin/blogs')
     revalidatePath(`/admin/blogs/${id}/edit`)
-    revalidatePath('/blogs')
-    revalidatePath(`/blogs/${data.slug}`)
+    // revalidatePath('/blogs') -> handled by tag
+    // revalidatePath(`/blogs/${data.slug}`) -> handled by tag
     return { success: true }
 }
 
@@ -233,6 +298,9 @@ export async function deleteBlog(id: string) {
     // Use Admin Client to ensure we can soft-delete regardless of complex RLS
     const adminDb = createAdminClient()
 
+    // Get slug first to invalidate tag
+    const { data } = await adminDb.from('blogs').select('slug').eq('id', id).single()
+
     const { error } = await adminDb
         .from('blogs')
         .update({ deleted_at: new Date().toISOString() })
@@ -245,9 +313,15 @@ export async function deleteBlog(id: string) {
 
     await logAudit('DELETE_BLOG', id, { soft_delete: true })
 
+    // @ts-expect-error Next.js 16 beta signature mismatch
+    revalidateTag('blogs')
+    if (data?.slug) {
+        // @ts-expect-error Next.js 16 beta signature mismatch
+        revalidateTag(`blog:${data.slug}`)
+    }
+
     revalidatePath('/admin/blogs')
     revalidatePath('/')
-    revalidatePath('/blogs')
     return { success: true }
 }
 

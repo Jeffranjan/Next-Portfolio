@@ -31,10 +31,25 @@ export async function generateMetadata({ params }: BlogPageProps): Promise<Metad
             images: blog.cover_image ? [{ url: blog.cover_image }] : undefined,
             type: 'article',
             publishedTime: blog.published_at || undefined,
-            authors: ['Ranjan Gupta'], // Hardcoded for now, or fetch from author profile
+            modifiedTime: blog.updated_at || undefined,
+            authors: ['Ranjan Gupta'],
+            url: `https://ranjangupta.online/blogs/${blog.slug}`, // Ideally use env var
+        },
+        alternates: {
+            canonical: `/blogs/${blog.slug}`,
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: blog.seo_title || blog.title,
+            description: blog.seo_description || blog.excerpt || undefined,
+            images: blog.cover_image ? [blog.cover_image] : undefined,
         },
     }
 }
+
+import ReadingProgress from '@/components/blogs/ReadingProgress'
+
+// ... existing imports
 
 export default async function BlogPage({ params }: BlogPageProps) {
     const { slug } = await params
@@ -45,10 +60,11 @@ export default async function BlogPage({ params }: BlogPageProps) {
     }
 
     return (
-        <div className="min-h-screen bg-black pt-24 pb-20">
+        <div className="min-h-screen bg-black pt-24 pb-20 relative">
+            <ReadingProgress />
             <ViewTracker blogId={blog.id} />
 
-            <article className="max-w-3xl mx-auto px-6">
+            <article className="max-w-[70ch] mx-auto px-6">
                 {/* Back Link */}
                 <Link
                     href="/blogs"
@@ -102,6 +118,6 @@ export default async function BlogPage({ params }: BlogPageProps) {
                 </div>
 
             </article>
-        </div>
+        </div >
     )
 }
