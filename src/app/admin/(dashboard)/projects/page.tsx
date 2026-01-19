@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { Plus, Edit2, ExternalLink, Box } from 'lucide-react'
 import { getProjects } from '@/lib/api'
-import { deleteProject } from '@/app/admin/projects/actions'
+import { deleteProject } from './actions'
 import Image from 'next/image'
 import { DeleteConfirmation } from '@/components/admin/delete-confirmation'
 import { EmptyState } from '@/components/ui/empty-state'

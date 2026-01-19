@@ -9,15 +9,25 @@ export default function RestoreButton({ entity, id }: { entity: string, id: stri
     const [isPending, startTransition] = useTransition()
 
     const handleRestore = () => {
-        if (!confirm('Are you sure you want to restore this item? It will become visible again.')) return
-
-        startTransition(async () => {
-            const result = await restoreItem(entity, id)
-            if (result?.error) {
-                toast.error(result?.error)
-            } else {
-                toast.success('Item restored successfully')
-            }
+        toast("Restore this item?", {
+            description: "It will become visible again in the public site.",
+            action: {
+                label: "Restore",
+                onClick: () => {
+                    startTransition(async () => {
+                        const result = await restoreItem(entity, id)
+                        if (result?.error) {
+                            toast.error(result?.error)
+                        } else {
+                            toast.success('Item restored successfully')
+                        }
+                    })
+                }
+            },
+            cancel: {
+                label: "Cancel",
+                onClick: () => { },
+            },
         })
     }
 

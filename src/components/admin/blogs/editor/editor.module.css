@@ -1,0 +1,100 @@
+/* Tiptap Editor Styles override for Tailwind Typography 'prose' defaults if needed */
+
+.editorWrapper :global(.ProseMirror) {
+    outline: none;
+    min-height: 400px;
+}
+
+.editorWrapper :global(.ProseMirror p) {
+    margin: 1em 0;
+}
+
+.editorWrapper :global(.ProseMirror h1) {
+    font-size: 2.25em;
+    font-weight: 800;
+    margin: 1em 0 0.5em;
+    font-family: var(--font-display);
+    color: #fff;
+    line-height: 1.1;
+}
+
+.editorWrapper :global(.ProseMirror h2) {
+    font-size: 1.75em;
+    font-weight: 700;
+    margin: 1.5em 0 0.5em;
+    color: #fff;
+}
+
+.editorWrapper :global(.ProseMirror h3) {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 1.5em 0 0.5em;
+    color: #eee;
+}
+
+.editorWrapper :global(.ProseMirror pre) {
+    background: #000;
+    border-radius: 0.5rem;
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 0.75rem 1rem;
+    border: 1px solid #333;
+    overflow-x: auto;
+}
+
+.editorWrapper :global(.ProseMirror code) {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 0.25rem;
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875em;
+    padding: 0.2em 0.4em;
+}
+
+.editorWrapper :global(.ProseMirror pre code) {
+    background: none;
+    color: inherit;
+    font-size: 0.875rem;
+    padding: 0;
+}
+
+.editorWrapper :global(.ProseMirror blockquote) {
+    border-left: 4px solid #333;
+    padding-left: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    font-style: italic;
+    color: #888;
+}
+
+.editorWrapper :global(.ProseMirror hr) {
+    border: none;
+    border-top: 1px solid #333;
+    margin: 2rem 0;
+}
+
+.editorWrapper :global(.ProseMirror img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+    border: 1px solid #333;
+}
+
+.editorWrapper :global(.ProseMirror ul),
+.editorWrapper :global(.ProseMirror ol) {
+    padding-left: 1.5rem;
+}
+
+.editorWrapper :global(.ProseMirror li) {
+    margin: 0.5em 0;
+}
+
+/* Placeholder extension visual */
+.editorWrapper :global(.ProseMirror p.is-editor-empty:first-child::before) {
+    color: #555;
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+}

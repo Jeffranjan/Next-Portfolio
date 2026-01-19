@@ -12,28 +12,43 @@ function TrashItemRow({ item }: { item: TrashItem }) {
     const [isDeleting, startDelete] = useTransition()
 
     const handleRestore = () => {
-        startRestore(async () => {
-            const result = await restoreItem(item.entity, item.id)
-            if (result?.error) {
-                toast.error(result.error)
-            } else {
-                toast.success('Item restored successfully')
-            }
+        toast("Restore this item?", {
+            description: "It will disappear from Trash and become active.",
+            action: {
+                label: "Restore",
+                onClick: () => {
+                    startRestore(async () => {
+                        const result = await restoreItem(item.entity, item.id)
+                        if (result?.error) {
+                            toast.error(result.error)
+                        } else {
+                            toast.success('Item restored successfully')
+                        }
+                    })
+                }
+            },
+            cancel: { label: "Cancel", onClick: () => { } }
         })
     }
 
     const handleDelete = () => {
-        const confirmed = prompt(`⚠ IRREVERSIBLE ACTION ⚠\n\nType DELETE to confirm permanent deletion of "${item.title}"`)
-        if (confirmed === 'DELETE') {
-            startDelete(async () => {
-                const result = await permanentDelete(item.entity, item.id)
-                if (result?.error) {
-                    toast.error(result.error)
-                } else {
-                    toast.success('Item permanently deleted')
+        toast.error("Permanent Delete?", {
+            description: `This will erase "${item.title}" forever. Action cannot be undone.`,
+            action: {
+                label: "Purge",
+                onClick: () => {
+                    startDelete(async () => {
+                        const result = await permanentDelete(item.entity, item.id)
+                        if (result?.error) {
+                            toast.error(result.error)
+                        } else {
+                            toast.success('Item permanently deleted')
+                        }
+                    })
                 }
-            })
-        }
+            },
+            cancel: { label: "Cancel", onClick: () => { } },
+        })
     }
 
     return (
@@ -88,6 +103,7 @@ export default function TrashList({ items }: { items: TrashItem[] }) {
         projects: items.filter(i => i.entity === 'projects'),
         skills: items.filter(i => i.entity === 'skills'),
         experience: items.filter(i => i.entity === 'experience'),
+        blogs: items.filter(i => i.entity === 'blogs'),
     }
 
     return (

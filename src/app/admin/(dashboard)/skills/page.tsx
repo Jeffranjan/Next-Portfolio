@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { Plus, Edit2, Box, Code, Database, Wind, Globe, Terminal } from 'lucide-react'
 import { getSkills } from '@/lib/api'
-import { deleteSkill } from '@/app/admin/skills/actions'
+import { deleteSkill } from './actions'
 import { DeleteConfirmation } from '@/components/admin/delete-confirmation'
 import { EmptyState } from '@/components/ui/empty-state'
 

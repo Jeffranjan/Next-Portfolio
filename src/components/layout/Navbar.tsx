@@ -2,53 +2,99 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Code, Terminal, Cpu, Mail } from "lucide-react";
+import { Menu, X, Code, Terminal, Cpu, Mail, BookOpen } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils"; // Assuming you have a utils file for merging classes, if not I'll create a basic one or use a helper function
 
 // If @/lib/utils doesn't exist, I will handle it. checking for it in next steps.
 // For now, I'll assume standard shadcn/ui or similar structure since lucide-react and tailwind-merge are present.
 
 const navItems = [
-    { name: "Home", href: "#hero", icon: Terminal },
-    { name: "Projects", href: "#projects", icon: Code },
-    { name: "Experience", href: "#experience", icon: Cpu },
-    { name: "Contact", href: "#contact", icon: Mail },
+    { name: "Home", href: "/#hero", icon: Terminal },
+    { name: "Projects", href: "/#projects", icon: Code },
+    { name: "Experience", href: "/#experience", icon: Cpu },
+    { name: "My Blogs", href: "/blogs", icon: BookOpen }, // Added Blogs
+    { name: "Contact", href: "/#contact", icon: Mail },
 ];
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("hero");
+    const pathname = usePathname();
 
     // Handle scroll effect for glassmorphism and active section highlighting
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
 
-            // Simple active section detection based on scroll position
-            const sections = navItems.map((item) => item.href.substring(1));
+            // Active section detection
+            // We include standard hash sections AND the special 'featured-blogs' section
+            const sections = [
+                ...navItems.filter(item => item.href.startsWith('/#') || item.href.startsWith('#')).map((item) => item.href.replace(/^\//, '').substring(1)),
+                'featured-blogs'
+            ];
+
+            // If we are on the blogs page, don't override the active section with scroll spy
+            if (window.location.pathname === '/blogs') return;
+
+            let currentSection = '';
+
             for (const section of sections) {
                 const element = document.getElementById(section);
                 if (element) {
                     const rect = element.getBoundingClientRect();
-                    if (rect.top >= 0 && rect.top <= 300) {
-                        setActiveSection(section);
-                        break;
+                    // Expanded detection range and logic to catch the "current" section better
+                    if (rect.top <= 300 && rect.bottom >= 100) {
+                        currentSection = section;
+                        // Don't break, keep creating to find the most relevant one (lowest valid one usually?) 
+                        // Actually, top-down approach: first one that matches logic?
+                        // Let's stick to the previous simple logic but robust:
+                        // If rect.top is reasonable, it's the one.
                     }
                 }
+            }
+
+            if (currentSection) {
+                // Map featured-blogs back to 'blogs' for highlighting if needed, or just set strictly
+                setActiveSection(currentSection === 'featured-blogs' ? 'blogs' : currentSection);
             }
         };
 
         window.addEventListener("scroll", handleScroll);
+        // Trigger once on mount
+        handleScroll();
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [pathname]);
 
-    const handleNavClick = (href: string) => {
+    // Update active section based on pathname if not on home page sections
+    useEffect(() => {
+        if (pathname === '/blogs') {
+            setActiveSection('blogs');
+        } else if (pathname === '/') {
+            // Reset to hero if at top
+            if (window.scrollY < 100) setActiveSection('hero');
+        }
+    }, [pathname]);
+
+    const handleNavClick = (href: string, e?: React.MouseEvent) => {
         setIsOpen(false);
-        const element = document.querySelector(href);
-        if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
+
+        // If we represent a section link
+        if (href.startsWith('/#') || href.startsWith('#')) {
+            // If we are NOT on the home page, let the Link component handle the navigation to "/"
+            if (pathname !== '/') {
+                return;
+            }
+
+            // If we ARE on the home page, prevent default and scroll smoothly
+            if (e) e.preventDefault();
+            const id = href.replace(/^\//, ''); // Remove leading slash if any
+            const element = document.querySelector(id);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
         }
     };
 
@@ -82,16 +128,20 @@ export default function Navbar() {
                         <Link
                             key={item.name}
                             href={item.href}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                handleNavClick(item.href);
-                            }}
+                            onClick={(e) => handleNavClick(item.href, e)}
                             className="relative group flex items-center gap-2 text-sm font-mono text-gray-400 hover:text-white transition-colors"
                         >
                             <item.icon className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-primary -ml-6 absolute" />
                             <span className={cn(
                                 "transition-all duration-300",
-                                activeSection === item.href.substring(1) ? "text-primary shadow-[0_0_10px_rgba(34,211,238,0.5)]" : ""
+                                (
+                                    // 1. Scroll Spy Match (Hash links)
+                                    (item.href.startsWith('/#') && activeSection === item.href.replace('/#', '')) ||
+                                    // 2. Special Case for Blogs Section on Home
+                                    (item.href === '/blogs' && activeSection === 'blogs') ||
+                                    // 3. Exact Path Match (e.g. on /blogs page)
+                                    (pathname === item.href && item.href !== '/#hero')
+                                ) ? "text-primary shadow-[0_0_10px_rgba(34,211,238,0.5)]" : ""
                             )}>
                                 {item.name}
                             </span>
@@ -132,10 +182,7 @@ export default function Navbar() {
                                     <motion.a
                                         key={item.name}
                                         href={item.href}
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            handleNavClick(item.href);
-                                        }}
+                                        onClick={(e) => handleNavClick(item.href, e)}
                                         initial={{ opacity: 0, x: -20 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: index * 0.1 }}

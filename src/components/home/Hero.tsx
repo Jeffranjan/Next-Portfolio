@@ -49,7 +49,7 @@ export default function Hero() {
                     >
                         {`>`} download_cv.pdf <Download className="w-4 h-4" />
                     </a>
-                </div>8
+                </div>
             </motion.div>
 
             {/* 3D Scene */}

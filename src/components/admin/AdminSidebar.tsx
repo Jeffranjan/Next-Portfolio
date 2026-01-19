@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, FolderKanban, Cpu, Award, BarChart3, LogOut, Terminal, Shield } from "lucide-react";
+import { LayoutDashboard, FolderKanban, Cpu, Award, BarChart3, LogOut, Terminal, Shield, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { logout } from "@/app/auth/actions";
 
 const navItems = [
     { name: "Overview", href: "/admin", icon: LayoutDashboard },
     { name: "Projects", href: "/admin/projects", icon: FolderKanban },
+    { name: "Blogs", href: "/admin/blogs", icon: BookOpen },
     { name: "Skills", href: "/admin/skills", icon: Award },
     { name: "Experience", href: "/admin/experience", icon: Cpu },
     { name: "Analytics", href: "/admin/analytics", icon: BarChart3 },

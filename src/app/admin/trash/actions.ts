@@ -9,7 +9,7 @@ export type TrashItem = {
     id: string
     title: string // mapped from title, name, or role+company
     deleted_at: string
-    entity: 'projects' | 'skills' | 'experience'
+    entity: 'projects' | 'skills' | 'experience' | 'blogs'
     details?: any
 }
 
@@ -17,10 +17,11 @@ export async function getTrashItems() {
     await requireAdmin()
     const supabase = createAdminClient()
 
-    const [projects, skills, experience] = await Promise.all([
+    const [projects, skills, experience, blogs] = await Promise.all([
         supabase.from('projects').select('*').not('deleted_at', 'is', null).order('deleted_at', { ascending: false }),
         supabase.from('skills').select('*').not('deleted_at', 'is', null).order('deleted_at', { ascending: false }),
         supabase.from('experience').select('*').not('deleted_at', 'is', null).order('deleted_at', { ascending: false }),
+        supabase.from('blogs').select('*').not('deleted_at', 'is', null).order('deleted_at', { ascending: false }),
     ])
 
     const trashItems: TrashItem[] = []
@@ -52,6 +53,16 @@ export async function getTrashItems() {
             deleted_at: e.deleted_at,
             entity: 'experience' as const,
             details: e
+        })))
+    }
+
+    if (blogs.data) {
+        trashItems.push(...blogs.data.map(b => ({
+            id: b.id,
+            title: b.title,
+            deleted_at: b.deleted_at,
+            entity: 'blogs' as const,
+            details: b
         })))
     }
 

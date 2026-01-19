@@ -86,9 +86,9 @@ export default function AuditLogList({ logs }: { logs: any[] }) {
                                     })}
                                     {log.action === 'DELETE' && <span className="text-gray-600 italic">Item archived</span>}
 
-                                    {log.action === 'DELETE' && log.entity_id && (
+                                    {(log.action === 'DELETE' || log.action === 'DELETE_BLOG') && log.entity_id && (
                                         <div className="mt-2">
-                                            <RestoreButton entity={log.entity} id={log.entity_id} />
+                                            <RestoreButton entity={log.entity.toLowerCase()} id={log.entity_id} />
                                         </div>
                                     )}
                                 </td>

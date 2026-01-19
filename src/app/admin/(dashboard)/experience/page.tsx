@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { Plus, Edit2, GitCommit, Calendar } from 'lucide-react'
 import { getAdminExperience } from '@/lib/api'
-import { deleteExperience } from '@/app/admin/experience/actions'
+import { deleteExperience } from './actions'
 import { DeleteConfirmation } from '@/components/admin/delete-confirmation'
 import { EmptyState } from '@/components/ui/empty-state'
 
