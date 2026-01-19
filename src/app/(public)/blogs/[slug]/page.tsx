@@ -5,6 +5,8 @@ import { Calendar, Clock, Eye, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import BlogContentRenderer from '@/components/blogs/BlogContentRenderer'
 import ViewTracker from '@/components/blogs/ViewTracker'
+import ReadingProgress from '@/components/blogs/ReadingProgress'
+import ShareButtons from '@/components/blogs/ShareButtons'
 
 interface BlogPageProps {
     params: Promise<{
@@ -33,7 +35,7 @@ export async function generateMetadata({ params }: BlogPageProps): Promise<Metad
             publishedTime: blog.published_at || undefined,
             modifiedTime: blog.updated_at || undefined,
             authors: ['Ranjan Gupta'],
-            url: `https://ranjangupta.online/blogs/${blog.slug}`, // Ideally use env var
+            url: `https://ranjangupta.online/blogs/${blog.slug}`,
         },
         alternates: {
             canonical: `/blogs/${blog.slug}`,
@@ -46,10 +48,6 @@ export async function generateMetadata({ params }: BlogPageProps): Promise<Metad
         },
     }
 }
-
-import ReadingProgress from '@/components/blogs/ReadingProgress'
-
-// ... existing imports
 
 export default async function BlogPage({ params }: BlogPageProps) {
     const { slug } = await params
@@ -98,6 +96,9 @@ export default async function BlogPage({ params }: BlogPageProps) {
                             {blog.views} views
                         </span>
                     </div>
+
+                    <ShareButtons title={blog.title} slug={blog.slug} />
+
                 </header>
 
                 {/* Cover Image */}
@@ -118,6 +119,6 @@ export default async function BlogPage({ params }: BlogPageProps) {
                 </div>
 
             </article>
-        </div >
+        </div>
     )
 }

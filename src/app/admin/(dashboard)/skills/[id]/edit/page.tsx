@@ -1,6 +1,6 @@
 
 import SkillForm from '@/components/admin/skills/SkillForm'
-import { updateSkill } from '@/app/admin/skills/actions'
+import { updateSkill } from '@/app/admin/(dashboard)/skills/actions'
 import { getSkillById } from '@/lib/api'
 import { notFound } from 'next/navigation'
 

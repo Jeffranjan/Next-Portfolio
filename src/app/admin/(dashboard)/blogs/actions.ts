@@ -328,6 +328,9 @@ export async function deleteBlog(id: string) {
 export async function restoreBlog(id: string) {
     const supabase = await createClient()
 
+    // Get slug first for revalidation
+    const { data: blog } = await supabase.from('blogs').select('slug').eq('id', id).single()
+
     const { error } = await supabase
         .from('blogs')
         .update({ deleted_at: null })
@@ -338,6 +341,13 @@ export async function restoreBlog(id: string) {
     }
 
     await logAudit('RESTORE_BLOG', id, {})
+
+    // @ts-expect-error Next.js 16 signature
+    revalidateTag('blogs')
+    if (blog?.slug) {
+        // @ts-expect-error Next.js 16 signature
+        revalidateTag(`blog:${blog.slug}`)
+    }
 
     revalidatePath('/admin/blogs')
     return { success: true }
@@ -356,6 +366,11 @@ export async function toggleFeatured(id: string, isFeatured: boolean) {
     }
 
     await logAudit('BLOG_FEATURED_TOGGLED', id, { featured: isFeatured })
+
+    // @ts-expect-error Next.js 16 signature
+    revalidateTag('blogs')
+    // @ts-expect-error Next.js 16 signature
+    revalidateTag('featured')
 
     revalidatePath('/admin/blogs')
     return { success: true }

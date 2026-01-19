@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Calendar, Clock, Eye, ArrowUpRight } from 'lucide-react'
 import { Blog } from '@/app/admin/(dashboard)/blogs/actions'
 import { cn } from '@/lib/utils'
@@ -13,7 +14,7 @@ export default function BlogCard({ blog, className }: BlogCardProps) {
         <Link
             href={`/blogs/${blog.slug}`}
             className={cn(
-                "group flex flex-col bg-[#050505] border border-[#222] rounded-xl overflow-hidden hover:border-primary/50 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)] transition-all duration-300 h-full",
+                "group flex flex-col bg-[#050505] border border-[#222] rounded-xl overflow-hidden hover:border-primary/50 hover:shadow-[0_0_25px_rgba(34,211,238,0.15)] hover:-translate-y-1 transition-all duration-300 h-full relative",
                 className
             )}
         >
@@ -23,10 +24,12 @@ export default function BlogCard({ blog, className }: BlogCardProps) {
                     Blog
                 </div>
                 {blog.cover_image && (
-                    <img
+                    <Image
                         src={blog.cover_image}
                         alt={blog.title}
-                        className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                        fill
+                        className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                 )}
             </div>

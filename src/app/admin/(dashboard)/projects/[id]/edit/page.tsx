@@ -1,7 +1,7 @@
 
 import { notFound } from 'next/navigation'
 import ProjectForm from '@/components/admin/projects/ProjectForm'
-import { updateProject } from '@/app/admin/projects/actions'
+import { updateProject } from '@/app/admin/(dashboard)/projects/actions'
 import { getProjectById } from '@/lib/api'
 
 export default async function EditProjectPage({ params }: { params: Promise<{ id: string }> }) {

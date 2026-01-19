@@ -9,11 +9,14 @@ import { useDebouncedCallback } from 'use-debounce'
 
 interface BlogsListProps {
     initialBlogs: Blog[]
+    total?: number
+    currentPage?: number
+    limit?: number
 }
 
 type SortOption = 'latest' | 'views' | 'featured'
 
-export default function BlogsList({ initialBlogs }: BlogsListProps) {
+export default function BlogsList({ initialBlogs, total = 0, currentPage = 1, limit = 9 }: BlogsListProps) {
     const router = useRouter()
     const searchParams = useSearchParams()
 
@@ -43,6 +46,17 @@ export default function BlogsList({ initialBlogs }: BlogsListProps) {
         params.set('sort', sort)
         setIsPending(true)
         router.push(`/blogs?${params.toString()}`)
+    }
+
+    const totalPages = Math.ceil(total / limit)
+
+    const handlePageChange = (newPage: number) => {
+        const params = new URLSearchParams(searchParams)
+        params.set('page', newPage.toString())
+        setIsPending(true)
+        router.push(`/blogs?${params.toString()}`)
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' })
     }
 
     // Reset pending state when data changes (handled by parent passing new initialBlogs)
@@ -110,6 +124,29 @@ export default function BlogsList({ initialBlogs }: BlogsListProps) {
                     </div>
                 )}
             </div>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+                <div className="flex justify-center gap-4 pt-8 border-t border-[#222]">
+                    <button
+                        onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage <= 1}
+                        className="px-4 py-2 text-sm font-mono border border-[#333] rounded-lg text-gray-400 hover:text-white hover:border-white/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                    >
+                        Previous
+                    </button>
+                    <span className="flex items-center text-sm font-mono text-gray-500">
+                        Page {currentPage} of {totalPages}
+                    </span>
+                    <button
+                        onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage >= totalPages}
+                        className="px-4 py-2 text-sm font-mono border border-[#333] rounded-lg text-gray-400 hover:text-white hover:border-white/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                    >
+                        Next
+                    </button>
+                </div>
+            )}
         </div>
     )
 }
@@ -119,8 +156,8 @@ function SortButton({ label, icon: Icon, active, onClick }: any) {
         <button
             onClick={onClick}
             className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-mono border transition-all whitespace-nowrap ${active
-                    ? 'bg-primary/10 border-primary text-primary'
-                    : 'bg-transparent border-[#333] text-gray-500 hover:text-gray-300'
+                ? 'bg-primary/10 border-primary text-primary'
+                : 'bg-transparent border-[#333] text-gray-500 hover:text-gray-300'
                 }`}
         >
             <Icon className="w-3 h-3" />

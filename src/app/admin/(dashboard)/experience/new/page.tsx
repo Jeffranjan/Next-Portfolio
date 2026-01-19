@@ -1,6 +1,6 @@
 
 import ExperienceForm from '@/components/admin/experience/ExperienceForm'
-import { createExperience } from '@/app/admin/experience/actions'
+import { createExperience } from '@/app/admin/(dashboard)/experience/actions'
 
 export default function NewExperiencePage() {
     return (

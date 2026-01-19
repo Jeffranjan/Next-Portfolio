@@ -18,6 +18,11 @@ const orbitron = Orbitron({
 export const metadata: Metadata = {
   title: "Ranjan's Portfolio",
   description: "Next.js + Three.js Portfolio",
+  alternates: {
+    types: {
+      'application/rss+xml': '/rss.xml',
+    },
+  },
 };
 
 import AnalyticsTracker from "@/components/analytics/AnalyticsTracker";

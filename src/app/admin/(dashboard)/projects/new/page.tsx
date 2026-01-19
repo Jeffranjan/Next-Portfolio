@@ -1,6 +1,6 @@
 
 import ProjectForm from '@/components/admin/projects/ProjectForm'
-import { createProject } from '@/app/admin/projects/actions'
+import { createProject } from '@/app/admin/(dashboard)/projects/actions'
 
 export default function NewProjectPage() {
     return (

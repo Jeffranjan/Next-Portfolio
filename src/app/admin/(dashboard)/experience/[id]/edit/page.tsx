@@ -1,6 +1,6 @@
 
 import ExperienceForm from '@/components/admin/experience/ExperienceForm'
-import { updateExperience } from '@/app/admin/experience/actions'
+import { updateExperience } from '@/app/admin/(dashboard)/experience/actions'
 import { getExperienceById } from '@/lib/api'
 import { notFound } from 'next/navigation'
 

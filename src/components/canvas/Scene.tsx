@@ -13,9 +13,13 @@ export default function Scene({ children, className, style }: SceneProps) {
     return (
         <Canvas
             className={className}
-            style={style}
-            dpr={[1, 1.5]} // Adaptive pixel ratio for performance (capped at 1.5x)
-            gl={{ antialias: true, alpha: true }}
+            style={{ ...style, background: 'transparent' }}
+            dpr={[1, 1.5]}
+            gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }}
+            onCreated={({ gl, scene }) => {
+                gl.setClearColor(0, 0); // Transparent
+                scene.background = null;
+            }}
             camera={{ position: [0, 0, 5], fov: 50 }}
         >
             {/* Light setup for futuristic glow */}
@@ -25,7 +29,7 @@ export default function Scene({ children, className, style }: SceneProps) {
 
             {children}
 
-            <Environment preset="city" />
+            <Environment preset="city" background={false} />
             <Preload all />
         </Canvas>
     );

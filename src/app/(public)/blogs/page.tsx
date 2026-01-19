@@ -19,8 +19,10 @@ export default async function BlogsPage({
     const params = await searchParams
     const sortBy = typeof params.sort === 'string' ? params.sort : 'latest'
     const query = typeof params.q === 'string' ? params.q : ''
+    const page = typeof params.page === 'string' ? parseInt(params.page) : 1
+    const limit = 9
 
-    const blogs = await getPublishedBlogs({ sortBy, query })
+    const { data: blogs, total } = await getPublishedBlogs({ sortBy, query, page, limit })
 
     return (
         <div className="min-h-screen bg-black pt-24 pb-20">
@@ -50,7 +52,7 @@ export default async function BlogsPage({
                 </div>
 
                 {/* Interactivity wrapper */}
-                <BlogsList initialBlogs={blogs} />
+                <BlogsList initialBlogs={blogs} total={total} currentPage={page} limit={limit} />
             </div>
         </div>
     )

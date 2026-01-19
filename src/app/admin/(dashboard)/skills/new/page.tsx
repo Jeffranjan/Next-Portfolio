@@ -1,6 +1,6 @@
 
 import SkillForm from '@/components/admin/skills/SkillForm'
-import { createSkill } from '@/app/admin/skills/actions'
+import { createSkill } from '@/app/admin/(dashboard)/skills/actions'
 
 export default function NewSkillPage() {
     return (
