@@ -9,666 +9,7 @@
       "content": [
         {
           "type": "text",
-          "text": "How Git Works Internally (Big Picture First)"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Git is "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "not"
-        },
-        {
-          "type": "text",
-          "text": " a file tracker."
-        },
-        {
-          "type": "hardBreak"
-        },
-        {
-          "type": "text",
-          "text": "It’s a "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "content tracker"
-        },
-        {
-          "type": "text",
-          "text": "."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "That’s the first brain unlock."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Git doesn’t care about:"
-        }
-      ]
-    },
-    {
-      "type": "bulletList",
-      "content": [
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "File names (that much)"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Folder structure (directly)"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Line-by-line diffs (internally)"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Git cares about:"
-        },
-        {
-          "type": "hardBreak"
-        },
-        {
-          "type": "text",
-          "text": "👉 "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "snapshots of content"
-        },
-        {
-          "type": "text",
-          "text": ", stored efficiently and immutably."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Every time you commit, Git:"
-        }
-      ]
-    },
-    {
-      "type": "orderedList",
-      "attrs": {
-        "start": 1,
-        "type": null
-      },
-      "content": [
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Takes a snapshot of your project"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Breaks it into objects"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Stores them using cryptographic hashes"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Links them together like a graph"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "No magic. Just data structures done right."
-        }
-      ]
-    },
-    {
-      "type": "horizontalRule"
-    },
-    {
-      "type": "heading",
-      "attrs": {
-        "level": 2
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "Understanding the "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "code"
-            }
-          ],
-          "text": ".git"
-        },
-        {
-          "type": "text",
-          "text": " Folder"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "When you run:"
-        }
-      ]
-    },
-    {
-      "type": "codeBlock",
-      "attrs": {
-        "language": "bash"
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "git init\n"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Git creates a hidden folder called:"
-        }
-      ]
-    },
-    {
-      "type": "codeBlock",
-      "attrs": {
-        "language": null
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": ".git/\n"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "This folder is "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "the entire Git repository"
-        },
-        {
-          "type": "text",
-          "text": "."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Delete it, and Git is gone."
-        },
-        {
-          "type": "hardBreak"
-        },
-        {
-          "type": "text",
-          "text": "Your files stay. History dies."
-        }
-      ]
-    },
-    {
-      "type": "heading",
-      "attrs": {
-        "level": 3
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "What the "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "code"
-            }
-          ],
-          "text": ".git"
-        },
-        {
-          "type": "text",
-          "text": " Folder Really Is"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "The "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "code"
-            }
-          ],
-          "text": ".git"
-        },
-        {
-          "type": "text",
-          "text": " folder contains:"
-        }
-      ]
-    },
-    {
-      "type": "bulletList",
-      "content": [
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "All commits"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "All branches"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "All tags"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Entire history"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Git configuration"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Object database"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Your working directory is just a "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "italic"
-            }
-          ],
-          "text": "view"
-        },
-        {
-          "type": "text",
-          "text": "."
-        },
-        {
-          "type": "hardBreak"
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "code"
-            }
-          ],
-          "text": ".git"
-        },
-        {
-          "type": "text",
-          "text": " is the truth."
-        }
-      ]
-    },
-    {
-      "type": "heading",
-      "attrs": {
-        "level": 3
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "High-Level Structure of "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "code"
-            }
-          ],
-          "text": ".git"
-        }
-      ]
-    },
-    {
-      "type": "paragraph"
-    },
-    {
-      "type": "image",
-      "attrs": {
-        "src": "https://git-scm.com/book/en/v2/images/data-model-2.png",
-        "alt": "Image",
-        "title": null,
-        "width": null,
-        "height": null
-      }
-    },
-    {
-      "type": "paragraph"
-    },
-    {
-      "type": "image",
-      "attrs": {
-        "src": "https://humbletoolsmith.com/img/posts/a-look-inside-the-_git-folder/Git%20Folder%20Internals.png",
-        "alt": "Image",
-        "title": null,
-        "width": null,
-        "height": null
-      }
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Common contents:"
-        }
-      ]
-    },
-    {
-      "type": "codeBlock",
-      "attrs": {
-        "language": null
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": ".git/\n ├── objects/\n ├── refs/\n ├── HEAD\n ├── index\n └── config\n"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Each part has a job."
-        },
-        {
-          "type": "hardBreak"
-        },
-        {
-          "type": "text",
-          "text": "Nothing here is random."
-        }
-      ]
-    },
-    {
-      "type": "horizontalRule"
-    },
-    {
-      "type": "heading",
-      "attrs": {
-        "level": 2
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "Git Objects: Blob, Tree, Commit"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Everything in Git boils down to "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "objects"
-        },
-        {
-          "type": "text",
-          "text": "."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "There are only "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "three core object types"
-        },
-        {
-          "type": "text",
-          "text": " you need to understand."
-        }
-      ]
-    },
-    {
-      "type": "horizontalRule"
-    },
-    {
-      "type": "heading",
-      "attrs": {
-        "level": 3
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "1️⃣ Blob (File Content)"
+          "text": "First: What Is a Server and Why Do We Talk to It?"
         }
       ]
     },
@@ -686,33 +27,11 @@
               "type": "bold"
             }
           ],
-          "text": "blob"
+          "text": "server"
         },
         {
           "type": "text",
-          "text": " stores the "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "content of a file"
-        },
-        {
-          "type": "text",
-          "text": "."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Important:"
+          "text": " is just another computer whose job is to:"
         }
       ]
     },
@@ -727,7 +46,7 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "No filename"
+                  "text": "Receive requests"
                 }
               ]
             }
@@ -741,7 +60,7 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "No path"
+                  "text": "Process them"
                 }
               ]
             }
@@ -755,7 +74,7 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "Just raw content"
+                  "text": "Send responses back"
                 }
               ]
             }
@@ -768,7 +87,72 @@
       "content": [
         {
           "type": "text",
-          "text": "If two files have identical content → Git stores "
+          "text": "When you:"
+        }
+      ]
+    },
+    {
+      "type": "bulletList",
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Open a website"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Fetch data from an API"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Submit a form"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "You’re talking to a server."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Most of the time, your "
         },
         {
           "type": "text",
@@ -777,11 +161,31 @@
               "type": "bold"
             }
           ],
-          "text": "one blob"
+          "text": "browser"
         },
         {
           "type": "text",
-          "text": "."
+          "text": " does this for you."
+        },
+        {
+          "type": "hardBreak"
+        },
+        {
+          "type": "text",
+          "text": "But developers often need to talk to servers "
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "directly"
+        },
+        {
+          "type": "text",
+          "text": "—without a UI."
         }
       ]
     },
@@ -790,7 +194,7 @@
       "content": [
         {
           "type": "text",
-          "text": "That’s how Git stays fast and efficient."
+          "text": "That’s where cURL enters the chat."
         }
       ]
     },
@@ -800,12 +204,12 @@
     {
       "type": "heading",
       "attrs": {
-        "level": 3
+        "level": 2
       },
       "content": [
         {
           "type": "text",
-          "text": "2️⃣ Tree (Directory Structure)"
+          "text": "What is cURL? (Very Simple Explanation)"
         }
       ]
     },
@@ -814,7 +218,16 @@
       "content": [
         {
           "type": "text",
-          "text": "A "
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "cURL"
+        },
+        {
+          "type": "text",
+          "text": " is a command-line tool that lets you "
         },
         {
           "type": "text",
@@ -823,58 +236,24 @@
               "type": "bold"
             }
           ],
-          "text": "tree"
+          "text": "send requests to a server"
         },
         {
           "type": "text",
-          "text": " represents:"
-        }
-      ]
-    },
-    {
-      "type": "bulletList",
-      "content": [
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Folder structure"
-                }
-              ]
-            }
-          ]
+          "text": " and "
         },
         {
-          "type": "listItem",
-          "content": [
+          "type": "text",
+          "marks": [
             {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "File names"
-                }
-              ]
+              "type": "bold"
             }
-          ]
+          ],
+          "text": "see the response"
         },
         {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Links to blobs and other trees"
-                }
-              ]
-            }
-          ]
+          "type": "text",
+          "text": "."
         }
       ]
     },
@@ -883,20 +262,16 @@
       "content": [
         {
           "type": "text",
-          "text": "Think of a tree as a "
-        },
+          "text": "That’s it. No magic."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
         {
           "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "map"
-        },
-        {
-          "type": "text",
-          "text": ":"
+          "text": "Think of cURL as:"
         }
       ]
     },
@@ -908,55 +283,18 @@
           "content": [
             {
               "type": "text",
-              "text": "“This folder contains these files, pointing to these blobs.”"
+              "text": "“A browser without buttons, running in your terminal.”"
             }
           ]
         }
       ]
     },
     {
-      "type": "horizontalRule"
-    },
-    {
-      "type": "heading",
-      "attrs": {
-        "level": 3
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "3️⃣ Commit (Snapshot + Metadata)"
-        }
-      ]
-    },
-    {
       "type": "paragraph",
       "content": [
         {
           "type": "text",
-          "text": "A "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "commit"
-        },
-        {
-          "type": "text",
-          "text": " ties everything together."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "A commit contains:"
+          "text": "You tell cURL:"
         }
       ]
     },
@@ -971,7 +309,7 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "A reference to a tree"
+                  "text": "Where to send the request"
                 }
               ]
             }
@@ -985,49 +323,7 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "Author info"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Timestamp"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Commit message"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Parent commit(s)"
+                  "text": "What kind of request it is"
                 }
               ]
             }
@@ -1040,7 +336,7 @@
       "content": [
         {
           "type": "text",
-          "text": "A commit does "
+          "text": "And it shows you "
         },
         {
           "type": "text",
@@ -1049,77 +345,11 @@
               "type": "bold"
             }
           ],
-          "text": "not"
+          "text": "exactly"
         },
         {
           "type": "text",
-          "text": " store file data directly."
-        },
-        {
-          "type": "hardBreak"
-        },
-        {
-          "type": "text",
-          "text": "It points to a tree → which points to blobs."
-        }
-      ]
-    },
-    {
-      "type": "horizontalRule"
-    },
-    {
-      "type": "heading",
-      "attrs": {
-        "level": 3
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "Relationship Between Objects"
-        }
-      ]
-    },
-    {
-      "type": "paragraph"
-    },
-    {
-      "type": "image",
-      "attrs": {
-        "src": "https://shafiul.github.io/gitbook/assets/images/figure/objects-example.png",
-        "alt": "Image",
-        "title": null,
-        "width": null,
-        "height": null
-      }
-    },
-    {
-      "type": "paragraph"
-    },
-    {
-      "type": "image",
-      "attrs": {
-        "src": "https://thoughtbot-images.s3.amazonaws.com/upcase/git-course/git-base-object-model.png",
-        "alt": "Image",
-        "title": null,
-        "width": null,
-        "height": null
-      }
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "This relationship is the heart of Git."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Once this clicks, Git suddenly feels logical instead of mystical."
+          "text": " what the server replies with."
         }
       ]
     },
@@ -1134,7 +364,7 @@
       "content": [
         {
           "type": "text",
-          "text": "How Git Tracks Changes (The Secret Sauce)"
+          "text": "Why Programmers Need cURL"
         }
       ]
     },
@@ -1143,36 +373,7 @@
       "content": [
         {
           "type": "text",
-          "text": "Git doesn’t store “changes”."
-        },
-        {
-          "type": "hardBreak"
-        },
-        {
-          "type": "text",
-          "text": "It stores "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "snapshots"
-        },
-        {
-          "type": "text",
-          "text": "."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "When you modify a file:"
+          "text": "Developers use cURL because it’s:"
         }
       ]
     },
@@ -1187,7 +388,7 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "Git doesn’t update an old blob"
+                  "text": "Fast"
                 }
               ]
             }
@@ -1201,7 +402,192 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "It creates a "
+                  "text": "Scriptable"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "UI-independent"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Honest (no hidden behavior)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "You use cURL when:"
+        }
+      ]
+    },
+    {
+      "type": "bulletList",
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Testing APIs"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Debugging backend issues"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Checking server responses"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Verifying headers and status codes"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Working on servers with no browser"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "If you do backend, DevOps, or API work—cURL is unavoidable."
+        }
+      ]
+    },
+    {
+      "type": "horizontalRule"
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Making Your First Request Using cURL"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Let’s start with the simplest possible thing."
+        }
+      ]
+    },
+    {
+      "type": "codeBlock",
+      "attrs": {
+        "language": "bash"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "curl https://example.com\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "What just happened?"
+        }
+      ]
+    },
+    {
+      "type": "bulletList",
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "cURL sent a "
                 },
                 {
                   "type": "text",
@@ -1210,7 +596,7 @@
                       "type": "bold"
                     }
                   ],
-                  "text": "new blob"
+                  "text": "GET request"
                 }
               ]
             }
@@ -1224,7 +610,21 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "Old blobs remain untouched"
+                  "text": "The server sent back a response"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "cURL printed it in your terminal"
                 }
               ]
             }
@@ -1237,7 +637,94 @@
       "content": [
         {
           "type": "text",
-          "text": "This makes Git:"
+          "text": "No flags. No complexity."
+        },
+        {
+          "type": "hardBreak"
+        },
+        {
+          "type": "text",
+          "text": "You just talked to a server."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "That confidence boost matters."
+        }
+      ]
+    },
+    {
+      "type": "horizontalRule"
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Understanding Request and Response"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Every interaction with a server follows the same pattern."
+        }
+      ]
+    },
+    {
+      "type": "paragraph"
+    },
+    {
+      "type": "image",
+      "attrs": {
+        "src": "https://www.twilio.com/content/dam/twilio-com/global/en/blog/legacy/2022/http-methods-requests-curl/HTTP_Request_Flow_1.png",
+        "alt": "Image",
+        "title": null,
+        "width": null,
+        "height": null
+      }
+    },
+    {
+      "type": "paragraph"
+    },
+    {
+      "type": "image",
+      "attrs": {
+        "src": "https://qscxtzelbdglvzofrnvz.supabase.co/storage/v1/object/public/blog-images/uploads/c42a1a5e-cbf4-464d-9919-af1a903ce62f.png",
+        "alt": null,
+        "title": null,
+        "width": null,
+        "height": null
+      }
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "The Request"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Sent by you (client):"
         }
       ]
     },
@@ -1252,7 +739,7 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "Immutable"
+                  "text": "URL"
                 }
               ]
             }
@@ -1266,7 +753,7 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "Reliable"
+                  "text": "Method (GET or POST)"
                 }
               ]
             }
@@ -1280,9 +767,86 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "Time-travel friendly"
+                  "text": "Optional data"
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "The Response"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Sent by the server:"
+        }
+      ]
+    },
+    {
+      "type": "bulletList",
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Status code (success or failure)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Data (HTML, JSON, text)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Example mental model:"
+        }
+      ]
+    },
+    {
+      "type": "blockquote",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "“Ask → Process → Answer”"
             }
           ]
         }
@@ -1299,37 +863,32 @@
       "content": [
         {
           "type": "text",
-          "text": "What Happens During "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "code"
-            }
-          ],
-          "text": "git add"
+          "text": "Browser Request vs cURL Request"
         }
       ]
     },
     {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "When you run:"
-        }
-      ]
+      "type": "paragraph"
     },
     {
-      "type": "codeBlock",
+      "type": "image",
       "attrs": {
-        "language": "bash"
-      },
+        "src": "https://i.sstatic.net/TD3ok.png",
+        "alt": "Image",
+        "title": null,
+        "width": null,
+        "height": null
+      }
+    },
+    {
+      "type": "paragraph"
+    },
+    {
+      "type": "paragraph",
       "content": [
         {
           "type": "text",
-          "text": "git add file.txt\n"
+          "text": "BrowsercURLHides complexityShows everythingAuto-rendersRaw responseUI-basedTerminal-basedGreat for usersGreat for developers"
         }
       ]
     },
@@ -1338,124 +897,14 @@
       "content": [
         {
           "type": "text",
-          "text": "Internally, Git:"
-        }
-      ]
-    },
-    {
-      "type": "orderedList",
-      "attrs": {
-        "start": 1,
-        "type": null
-      },
-      "content": [
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Reads the file content"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Creates a blob object"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Hashes the content"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Stores it in "
-                },
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "code"
-                    }
-                  ],
-                  "text": ".git/objects"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Updates the "
-                },
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "bold"
-                    }
-                  ],
-                  "text": "index"
-                },
-                {
-                  "type": "text",
-                  "text": " (staging area)"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Nothing is committed yet."
+          "text": "cURL doesn’t decorate."
         },
         {
           "type": "hardBreak"
         },
         {
           "type": "text",
-          "text": "Git is just preparing the snapshot."
+          "text": "It tells the truth."
         }
       ]
     },
@@ -1470,16 +919,7 @@
       "content": [
         {
           "type": "text",
-          "text": "What Happens During "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "code"
-            }
-          ],
-          "text": "git commit"
+          "text": "Using cURL to Talk to APIs"
         }
       ]
     },
@@ -1488,7 +928,19 @@
       "content": [
         {
           "type": "text",
-          "text": "When you run:"
+          "text": "APIs are just servers expecting structured requests."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "GET Request (Read Data)"
         }
       ]
     },
@@ -1500,7 +952,7 @@
       "content": [
         {
           "type": "text",
-          "text": "git commit -m \"Add feature\"\n"
+          "text": "curl https://api.example.com/users\n"
         }
       ]
     },
@@ -1509,97 +961,19 @@
       "content": [
         {
           "type": "text",
-          "text": "Internally, Git:"
+          "text": "This asks:"
         }
       ]
     },
     {
-      "type": "orderedList",
-      "attrs": {
-        "start": 1,
-        "type": null
-      },
+      "type": "blockquote",
       "content": [
         {
-          "type": "listItem",
+          "type": "paragraph",
           "content": [
             {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Reads the staging area"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Builds tree objects"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Creates a commit object"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Points it to the previous commit"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Moves "
-                },
-                {
-                  "type": "text",
-                  "marks": [
-                    {
-                      "type": "code"
-                    }
-                  ],
-                  "text": "HEAD"
-                },
-                {
-                  "type": "text",
-                  "text": " forward"
-                }
-              ]
+              "type": "text",
+              "text": "“Give me users.”"
             }
           ]
         }
@@ -1610,14 +984,7 @@
       "content": [
         {
           "type": "text",
-          "text": "Congrats."
-        },
-        {
-          "type": "hardBreak"
-        },
-        {
-          "type": "text",
-          "text": "You just extended Git’s commit graph."
+          "text": "You’ll usually get JSON back."
         }
       ]
     },
@@ -1632,111 +999,51 @@
       "content": [
         {
           "type": "text",
-          "text": "Internal Flow of "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "code"
-            }
-          ],
-          "text": "git add"
-        },
-        {
-          "type": "text",
-          "text": " → "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "code"
-            }
-          ],
-          "text": "git commit"
+          "text": "POST Request (Send Data)"
         }
       ]
     },
     {
-      "type": "paragraph"
-    },
-    {
-      "type": "image",
+      "type": "codeBlock",
       "attrs": {
-        "src": "https://i.sstatic.net/F2H1Q.png",
-        "alt": "Image",
-        "title": null,
-        "width": null,
-        "height": null
-      }
-    },
-    {
-      "type": "paragraph"
-    },
-    {
-      "type": "image",
-      "attrs": {
-        "src": "https://scaler.com/topics/images/stages-in-git.webp",
-        "alt": "Image",
-        "title": null,
-        "width": null,
-        "height": null
-      }
+        "language": "bash"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "curl -X POST https://api.example.com/users\n"
+        }
+      ]
     },
     {
       "type": "paragraph",
       "content": [
         {
           "type": "text",
-          "text": "This flow explains:"
+          "text": "This tells the server:"
         }
       ]
     },
     {
-      "type": "bulletList",
+      "type": "blockquote",
       "content": [
         {
-          "type": "listItem",
+          "type": "paragraph",
           "content": [
             {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Why staging exists"
-                }
-              ]
+              "type": "text",
+              "text": "“I want to create something.”"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
         {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Why commits are cheap"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Why Git is fast even on massive repos"
-                }
-              ]
-            }
-          ]
+          "type": "text",
+          "text": "We’re keeping it light on flags for now—confidence first, depth later."
         }
       ]
     },
@@ -1751,7 +1058,100 @@
       "content": [
         {
           "type": "text",
-          "text": "How Git Uses Hashes (Integrity & Trust)"
+          "text": "Basic HTTP Request & Response Structure"
+        }
+      ]
+    },
+    {
+      "type": "paragraph"
+    },
+    {
+      "type": "image",
+      "attrs": {
+        "src": "https://qscxtzelbdglvzofrnvz.supabase.co/storage/v1/object/public/blog-images/uploads/c722d0af-0800-4586-ae38-e21d50c2914e.png",
+        "alt": null,
+        "title": null,
+        "width": null,
+        "height": null
+      }
+    },
+    {
+      "type": "image",
+      "attrs": {
+        "src": "https://media.licdn.com/dms/image/v2/D4D12AQHxG4Prn4ZrBQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1718998421506?e=2147483647&t=-2LQBR1-lDFdKqTy66DNfGm4cTz7xy27k8-QYYsYaio&v=beta",
+        "alt": "Image",
+        "title": null,
+        "width": null,
+        "height": null
+      }
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Behind the scenes, every cURL call follows HTTP rules:"
+        }
+      ]
+    },
+    {
+      "type": "bulletList",
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Method (GET, POST)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Headers"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Body"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Status codes"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1760,7 +1160,7 @@
       "content": [
         {
           "type": "text",
-          "text": "Every Git object is identified by a "
+          "text": "Understanding this makes "
         },
         {
           "type": "text",
@@ -1769,224 +1169,11 @@
               "type": "bold"
             }
           ],
-          "text": "SHA hash"
+          "text": "every backend tool easier"
         },
         {
           "type": "text",
-          "text": " (historically SHA-1)."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "That hash is based on:"
-        }
-      ]
-    },
-    {
-      "type": "bulletList",
-      "content": [
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Object type"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Content"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Metadata"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Change "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "italic"
-            }
-          ],
-          "text": "one character"
-        },
-        {
-          "type": "text",
-          "text": " → hash changes completely."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "This gives Git:"
-        }
-      ]
-    },
-    {
-      "type": "bulletList",
-      "content": [
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Data integrity"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Tamper detection"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Content-addressable storage"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Git literally knows if history was altered."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "That’s why Git is trusted for:"
-        }
-      ]
-    },
-    {
-      "type": "bulletList",
-      "content": [
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Open source"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Enterprise"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Distributed teams"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Massive codebases"
-                }
-              ]
-            }
-          ]
+          "text": " later."
         }
       ]
     },
@@ -2001,62 +1188,42 @@
       "content": [
         {
           "type": "text",
-          "text": "The Mental Model (This Is the Payoff)"
+          "text": "Where cURL Fits in Backend Development"
         }
       ]
+    },
+    {
+      "type": "paragraph"
+    },
+    {
+      "type": "image",
+      "attrs": {
+        "src": "https://assets.apidog.com/blog-learn/2024/02/apidog-workflow.png",
+        "alt": "Image",
+        "title": null,
+        "width": null,
+        "height": null
+      }
+    },
+    {
+      "type": "paragraph"
+    },
+    {
+      "type": "image",
+      "attrs": {
+        "src": "https://svitla.com/uploads/ckeditor/01_27.05.jpg",
+        "alt": "Image",
+        "title": null,
+        "width": null,
+        "height": null
+      }
     },
     {
       "type": "paragraph",
       "content": [
         {
           "type": "text",
-          "text": "Stop thinking:"
-        }
-      ]
-    },
-    {
-      "type": "blockquote",
-      "content": [
-        {
-          "type": "paragraph",
-          "content": [
-            {
-              "type": "text",
-              "text": "“Git tracks files”"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Start thinking:"
-        }
-      ]
-    },
-    {
-      "type": "blockquote",
-      "content": [
-        {
-          "type": "paragraph",
-          "content": [
-            {
-              "type": "text",
-              "text": "“Git stores content as immutable objects connected by hashes”"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Once you get this:"
+          "text": "cURL is often used:"
         }
       ]
     },
@@ -2071,7 +1238,7 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "Merge conflicts make sense"
+                  "text": "Before frontend exists"
                 }
               ]
             }
@@ -2085,7 +1252,7 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "Detached HEAD isn’t scary"
+                  "text": "Before API clients are built"
                 }
               ]
             }
@@ -2099,7 +1266,7 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "Rebase feels logical"
+                  "text": "During debugging"
                 }
               ]
             }
@@ -2113,7 +1280,21 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "Git stops being memorization-heavy"
+                  "text": "In CI/CD pipelines"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "On remote servers"
                 }
               ]
             }
@@ -2126,7 +1307,65 @@
       "content": [
         {
           "type": "text",
-          "text": "You don’t "
+          "text": "It’s the "
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "first responder"
+        },
+        {
+          "type": "text",
+          "text": " of backend debugging."
+        }
+      ]
+    },
+    {
+      "type": "horizontalRule"
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Common Mistakes Beginners Make with cURL"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Let’s save you some pain."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "❌ Overusing Flags Too Early"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "cURL has "
         },
         {
           "type": "text",
@@ -2135,18 +1374,73 @@
               "type": "italic"
             }
           ],
-          "text": "use"
+          "text": "a lot"
         },
         {
           "type": "text",
-          "text": " Git anymore."
+          "text": " of options."
         },
         {
           "type": "hardBreak"
         },
         {
           "type": "text",
-          "text": "You "
+          "text": "You don’t need them all on day one."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Start simple. Build confidence."
+        }
+      ]
+    },
+    {
+      "type": "horizontalRule"
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "❌ Expecting Pretty Output"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "cURL returns "
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "raw data"
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "If you want formatting, that’s a "
         },
         {
           "type": "text",
@@ -2155,11 +1449,157 @@
               "type": "italic"
             }
           ],
-          "text": "understand"
+          "text": "different tool"
         },
         {
           "type": "text",
-          "text": " it."
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "horizontalRule"
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "❌ Forgetting the Server Is the Boss"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "If something fails:"
+        }
+      ]
+    },
+    {
+      "type": "bulletList",
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "It’s usually server-side"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Not a “cURL issue”"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "cURL just delivers messages."
+        }
+      ]
+    },
+    {
+      "type": "horizontalRule"
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "❌ Mixing Browser Thinking with API Thinking"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "APIs don’t behave like websites."
+        }
+      ]
+    },
+    {
+      "type": "bulletList",
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "No visuals"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "No clicks"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Just requests and responses"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Once you accept that, cURL becomes easy."
         }
       ]
     },
@@ -2183,20 +1623,27 @@
       "content": [
         {
           "type": "text",
-          "text": "The "
+          "text": "cURL isn’t hard."
+        },
+        {
+          "type": "hardBreak"
+        },
+        {
+          "type": "text",
+          "text": "It’s "
         },
         {
           "type": "text",
           "marks": [
             {
-              "type": "code"
+              "type": "bold"
             }
           ],
-          "text": ".git"
+          "text": "honest"
         },
         {
           "type": "text",
-          "text": " folder is not scary — it’s elegant."
+          "text": "."
         }
       ]
     },
@@ -2205,7 +1652,7 @@
       "content": [
         {
           "type": "text",
-          "text": "Git works because:"
+          "text": "It shows you:"
         }
       ]
     },
@@ -2220,7 +1667,7 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "It stores snapshots, not diffs"
+                  "text": "What you send"
                 }
               ]
             }
@@ -2234,7 +1681,7 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "It uses hashes for trust"
+                  "text": "What the server replies"
                 }
               ]
             }
@@ -2248,7 +1695,7 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "It treats history as a graph, not a line"
+                  "text": "Nothing more, nothing less"
                 }
               ]
             }
@@ -2261,7 +1708,76 @@
       "content": [
         {
           "type": "text",
-          "text": "Master the mental model, and Git becomes predictable instead of painful."
+          "text": "Mastering cURL builds:"
+        }
+      ]
+    },
+    {
+      "type": "bulletList",
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Backend confidence"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "API intuition"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Debugging superpowers"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "If you can talk to a server with cURL, you can understand "
+        },
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "italic"
+            }
+          ],
+          "text": "any"
+        },
+        {
+          "type": "text",
+          "text": " backend system."
         }
       ]
     }

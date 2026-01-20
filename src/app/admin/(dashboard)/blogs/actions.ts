@@ -110,6 +110,7 @@ export async function createBlog(formData: {
     seo_title?: string
     seo_description?: string
     content?: any
+    content_json?: string
 }) {
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
@@ -138,16 +139,31 @@ export async function createBlog(formData: {
     }
 
     // Calculate reading time
-    const readingTime = calculateReadingTime(formData.content)
+    let content = formData.content
+
+    // Parse content_json if sent (to bypass serialization issues)
+    if ((formData as any).content_json) {
+        try {
+            content = JSON.parse((formData as any).content_json)
+        } catch (e) {
+            console.error('Failed to parse content_json', e)
+        }
+    }
+
+    const readingTime = calculateReadingTime(content)
+
+    // Clean up content_json from payload
+    const payload = { ...formData } as any
+    if (payload.content_json) delete payload.content_json
 
     const { data, error } = await supabase
         .from('blogs')
         .insert([
             {
-                ...formData,
+                ...payload,
                 slug: finalSlug,
                 author_id: user.id,
-                content: formData.content || {},
+                content: content || {},
                 reading_time: readingTime,
                 published_at: formData.status === 'published' ? new Date().toISOString() : null,
             },

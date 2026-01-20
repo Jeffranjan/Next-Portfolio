@@ -93,7 +93,8 @@ export default function BlogForm({ initialData, isEditing = false }: BlogFormPro
             } else {
                 const res = await createBlog({
                     ...formData,
-                    status: formData.status as 'draft' | 'published'
+                    status: formData.status as 'draft' | 'published',
+                    content_json: JSON.stringify(formData.content)
                 })
                 if (res?.error) {
                     toast.error(res.error)
