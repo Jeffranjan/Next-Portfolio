@@ -10,15 +10,12 @@ A cutting-edge, futuristic personal portfolio website built with Next.js, TypeSc
 
 -   **Futuristic "Neo-Arc" Design**: Terminal-inspired UI, glassmorphism, and neon aesthetics.
 -   **Comprehensive Admin Dashboard**:
-    -   **Content Management**: Full CRUD operations for Projects, Experiences, Skills, and Products.
-    -   **Real-time Analytics**: Live order tracking and visitor insights powered by Supabase Realtime.
+    -   **Content Management**: Full CRUD operations for Blogs, Projects, Experiences, and Skills.
+    -   **Real-time Analytics**: Live visitor stats, page views, and device breakdown powered by Supabase Realtime.
     -   **Audit & Trash System**: Robust data safety with activity logging, soft-deletes, and restore capabilities.
+-   **Blog/Article Management**: Rich text editor support for creating and managing technical articles.
 -   **Interactive 3D Elements**: Immersive scenes powered by Three.js and React Three Fiber.
 -   **Smooth Animations**: Fluid transitions and micro-interactions using Framer Motion and GSAP.
--   **Advanced Product Management**: 
-    -   Multi-image support with drag-and-drop uploads.
-    -   Detailed product attributes and specifications.
--   **Repair Services Module**: Dedicated section for PC/Laptop repair service bookings.
 -   **Responsive Layout**: Fully optimized pixel-perfect design for mobile, tablet, and desktop.
 -   **Contact Integration**: Secure contact form handling with Resend.
 
