@@ -11,7 +11,7 @@ export default async function FeaturedBlogs() {
     return (
         <section id="featured-blogs" className="py-20 border-t border-[#111]">
             <div className="max-w-7xl mx-auto px-6">
-                <div className="flex flex-col md:flex-row items-end justify-between gap-6 mb-12">
+                <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-12">
                     <div className="flex flex-col gap-2">
                         <h2 className="text-primary tracking-widest text-sm font-semibold uppercase">
                             Recent thoughts and deep dives

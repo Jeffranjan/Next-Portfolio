@@ -868,20 +868,14 @@
       ]
     },
     {
-      "type": "paragraph"
-    },
-    {
       "type": "image",
       "attrs": {
-        "src": "https://i.sstatic.net/TD3ok.png",
-        "alt": "Image",
+        "src": "https://qscxtzelbdglvzofrnvz.supabase.co/storage/v1/object/public/blog-images/uploads/b4ef37a6-6f71-4751-9958-3c4ded8ca72c.png",
+        "alt": null,
         "title": null,
         "width": null,
         "height": null
       }
-    },
-    {
-      "type": "paragraph"
     },
     {
       "type": "paragraph",
