@@ -1,6 +1,6 @@
 # Futuristic Portfolio - Ranjan Gupta
 
-![Project Banner](https://ranjangupta.online/opengraph-image.png)
+![Project Banner](![alt text](image.png))
 
 A cutting-edge, futuristic personal portfolio website built with Next.js, TypeScript, and 3D technologies. This project showcases a "Neo-Arc" aesthetic, combining terminal-inspired UI, neon accents, and interactive 3D elements to create an immersive developer experience.
 
