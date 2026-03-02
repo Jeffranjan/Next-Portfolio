@@ -8,8 +8,8 @@
       },
       "content": [
         {
-          "type": "text",
-          "text": "First: What Is a Server and Why Do We Talk to It?"
+          "text": "Why Do We Even Need Promises?",
+          "type": "text"
         }
       ]
     },
@@ -17,68 +17,8 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "A "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "server"
-        },
-        {
-          "type": "text",
-          "text": " is just another computer whose job is to:"
-        }
-      ]
-    },
-    {
-      "type": "bulletList",
-      "content": [
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Receive requests"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Process them"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Send responses back"
-                }
-              ]
-            }
-          ]
+          "text": "Let’s start with the real problem.",
+          "type": "text"
         }
       ]
     },
@@ -86,55 +26,20 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "When you:"
+          "text": "Imagine this:",
+          "type": "text"
         }
       ]
     },
     {
-      "type": "bulletList",
+      "type": "codeBlock",
+      "attrs": {
+        "language": "js"
+      },
       "content": [
         {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Open a website"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Fetch data from an API"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Submit a form"
-                }
-              ]
-            }
-          ]
+          "text": "const data = fetch(\"https://api.example.com\");\nconsole.log(data);\n",
+          "type": "text"
         }
       ]
     },
@@ -142,8 +47,8 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "You’re talking to a server."
+          "text": "You expect data.",
+          "type": "text"
         }
       ]
     },
@@ -151,41 +56,33 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "Most of the time, your "
-        },
+          "text": "But what you get is… not data.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
         {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "browser"
-        },
+          "text": "Why?",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
         {
-          "type": "text",
-          "text": " does this for you."
+          "text": "Because fetching data takes time.",
+          "type": "text"
         },
         {
           "type": "hardBreak"
         },
         {
-          "type": "text",
-          "text": "But developers often need to talk to servers "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "directly"
-        },
-        {
-          "type": "text",
-          "text": "—without a UI."
+          "text": "JavaScript doesn’t pause and wait—it keeps going.",
+          "type": "text"
         }
       ]
     },
@@ -193,8 +90,30 @@
       "type": "paragraph",
       "content": [
         {
+          "text": "Without a system to handle “future results,” things break quickly.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "That system is called a ",
+          "type": "text"
+        },
+        {
+          "text": "Promise",
           "type": "text",
-          "text": "That’s where cURL enters the chat."
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ]
+        },
+        {
+          "text": ".",
+          "type": "text"
         }
       ]
     },
@@ -208,8 +127,8 @@
       },
       "content": [
         {
-          "type": "text",
-          "text": "What is cURL? (Very Simple Explanation)"
+          "text": "What Is a Promise? (Very Simple Explanation)",
+          "type": "text"
         }
       ]
     },
@@ -217,61 +136,8 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "cURL"
-        },
-        {
-          "type": "text",
-          "text": " is a command-line tool that lets you "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "send requests to a server"
-        },
-        {
-          "type": "text",
-          "text": " and "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "see the response"
-        },
-        {
-          "type": "text",
-          "text": "."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "That’s it. No magic."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Think of cURL as:"
+          "text": "A Promise is:",
+          "type": "text"
         }
       ]
     },
@@ -282,8 +148,8 @@
           "type": "paragraph",
           "content": [
             {
-              "type": "text",
-              "text": "“A browser without buttons, running in your terminal.”"
+              "text": "“A placeholder for a value that will exist later.”",
+              "type": "text"
             }
           ]
         }
@@ -293,8 +159,8 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "You tell cURL:"
+          "text": "Think of it like ordering food:",
+          "type": "text"
         }
       ]
     },
@@ -308,8 +174,8 @@
               "type": "paragraph",
               "content": [
                 {
-                  "type": "text",
-                  "text": "Where to send the request"
+                  "text": "You place the order",
+                  "type": "text"
                 }
               ]
             }
@@ -322,8 +188,22 @@
               "type": "paragraph",
               "content": [
                 {
-                  "type": "text",
-                  "text": "What kind of request it is"
+                  "text": "You get a receipt (Promise)",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "The food comes later",
+                  "type": "text"
                 }
               ]
             }
@@ -335,21 +215,8 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "And it shows you "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "exactly"
-        },
-        {
-          "type": "text",
-          "text": " what the server replies with."
+          "text": "The receipt isn’t the food—but it guarantees something is coming.",
+          "type": "text"
         }
       ]
     },
@@ -363,8 +230,8 @@
       },
       "content": [
         {
-          "type": "text",
-          "text": "Why Programmers Need cURL"
+          "text": "The Three States of a Promise",
+          "type": "text"
         }
       ]
     },
@@ -372,231 +239,36 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "Developers use cURL because it’s:"
+          "text": "A Promise can only be in one of three states:",
+          "type": "text"
         }
       ]
     },
     {
-      "type": "bulletList",
-      "content": [
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Fast"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Scriptable"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "UI-independent"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Honest (no hidden behavior)"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "You use cURL when:"
-        }
-      ]
-    },
-    {
-      "type": "bulletList",
-      "content": [
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Testing APIs"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Debugging backend issues"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Checking server responses"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Verifying headers and status codes"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Working on servers with no browser"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "If you do backend, DevOps, or API work—cURL is unavoidable."
-        }
-      ]
-    },
-    {
-      "type": "horizontalRule"
-    },
-    {
-      "type": "heading",
+      "type": "orderedList",
       "attrs": {
-        "level": 2
+        "type": null,
+        "start": 1
       },
       "content": [
         {
-          "type": "text",
-          "text": "Making Your First Request Using cURL"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Let’s start with the simplest possible thing."
-        }
-      ]
-    },
-    {
-      "type": "codeBlock",
-      "attrs": {
-        "language": "bash"
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "curl https://example.com\n"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "What just happened?"
-        }
-      ]
-    },
-    {
-      "type": "bulletList",
-      "content": [
-        {
           "type": "listItem",
           "content": [
             {
               "type": "paragraph",
               "content": [
                 {
-                  "type": "text",
-                  "text": "cURL sent a "
-                },
-                {
+                  "text": "Pending",
                   "type": "text",
                   "marks": [
                     {
                       "type": "bold"
                     }
-                  ],
-                  "text": "GET request"
+                  ]
+                },
+                {
+                  "text": " → Still waiting",
+                  "type": "text"
                 }
               ]
             }
@@ -609,8 +281,17 @@
               "type": "paragraph",
               "content": [
                 {
+                  "text": "Fulfilled",
                   "type": "text",
-                  "text": "The server sent back a response"
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "text": " → Successfully completed",
+                  "type": "text"
                 }
               ]
             }
@@ -623,8 +304,17 @@
               "type": "paragraph",
               "content": [
                 {
+                  "text": "Rejected",
                   "type": "text",
-                  "text": "cURL printed it in your terminal"
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "text": " → Something went wrong",
+                  "type": "text"
                 }
               ]
             }
@@ -636,95 +326,8 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "No flags. No complexity."
-        },
-        {
-          "type": "hardBreak"
-        },
-        {
-          "type": "text",
-          "text": "You just talked to a server."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "That confidence boost matters."
-        }
-      ]
-    },
-    {
-      "type": "horizontalRule"
-    },
-    {
-      "type": "heading",
-      "attrs": {
-        "level": 2
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "Understanding Request and Response"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Every interaction with a server follows the same pattern."
-        }
-      ]
-    },
-    {
-      "type": "paragraph"
-    },
-    {
-      "type": "image",
-      "attrs": {
-        "src": "https://www.twilio.com/content/dam/twilio-com/global/en/blog/legacy/2022/http-methods-requests-curl/HTTP_Request_Flow_1.png",
-        "alt": "Image",
-        "title": null,
-        "width": null,
-        "height": null
-      }
-    },
-    {
-      "type": "paragraph"
-    },
-    {
-      "type": "image",
-      "attrs": {
-        "src": "https://qscxtzelbdglvzofrnvz.supabase.co/storage/v1/object/public/blog-images/uploads/c42a1a5e-cbf4-464d-9919-af1a903ce62f.png",
-        "alt": null,
-        "title": null,
-        "width": null,
-        "height": null
-      }
-    },
-    {
-      "type": "heading",
-      "attrs": {
-        "level": 3
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "The Request"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Sent by you (client):"
+          "text": "Think of it like this:",
+          "type": "text"
         }
       ]
     },
@@ -738,8 +341,8 @@
               "type": "paragraph",
               "content": [
                 {
-                  "type": "text",
-                  "text": "URL"
+                  "text": "Pending → Cooking",
+                  "type": "text"
                 }
               ]
             }
@@ -752,8 +355,8 @@
               "type": "paragraph",
               "content": [
                 {
-                  "type": "text",
-                  "text": "Method (GET or POST)"
+                  "text": "Fulfilled → Served",
+                  "type": "text"
                 }
               ]
             }
@@ -766,62 +369,8 @@
               "type": "paragraph",
               "content": [
                 {
-                  "type": "text",
-                  "text": "Optional data"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "heading",
-      "attrs": {
-        "level": 3
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "The Response"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Sent by the server:"
-        }
-      ]
-    },
-    {
-      "type": "bulletList",
-      "content": [
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Status code (success or failure)"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Data (HTML, JSON, text)"
+                  "text": "Rejected → Burned",
+                  "type": "text"
                 }
               ]
             }
@@ -833,22 +382,8 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "Example mental model:"
-        }
-      ]
-    },
-    {
-      "type": "blockquote",
-      "content": [
-        {
-          "type": "paragraph",
-          "content": [
-            {
-              "type": "text",
-              "text": "“Ask → Process → Answer”"
-            }
-          ]
+          "text": "No fourth option.",
+          "type": "text"
         }
       ]
     },
@@ -862,27 +397,8 @@
       },
       "content": [
         {
-          "type": "text",
-          "text": "Browser Request vs cURL Request"
-        }
-      ]
-    },
-    {
-      "type": "image",
-      "attrs": {
-        "src": "https://qscxtzelbdglvzofrnvz.supabase.co/storage/v1/object/public/blog-images/uploads/b4ef37a6-6f71-4751-9958-3c4ded8ca72c.png",
-        "alt": null,
-        "title": null,
-        "width": null,
-        "height": null
-      }
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "BrowsercURLHides complexityShows everythingAuto-rendersRaw responseUI-basedTerminal-basedGreat for usersGreat for developers"
+          "text": "Creating a Basic Promise",
+          "type": "text"
         }
       ]
     },
@@ -890,63 +406,20 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "cURL doesn’t decorate."
-        },
-        {
-          "type": "hardBreak"
-        },
-        {
-          "type": "text",
-          "text": "It tells the truth."
-        }
-      ]
-    },
-    {
-      "type": "horizontalRule"
-    },
-    {
-      "type": "heading",
-      "attrs": {
-        "level": 2
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "Using cURL to Talk to APIs"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "APIs are just servers expecting structured requests."
-        }
-      ]
-    },
-    {
-      "type": "heading",
-      "attrs": {
-        "level": 3
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "GET Request (Read Data)"
+          "text": "Here’s the simplest example:",
+          "type": "text"
         }
       ]
     },
     {
       "type": "codeBlock",
       "attrs": {
-        "language": "bash"
+        "language": "js"
       },
       "content": [
         {
-          "type": "text",
-          "text": "curl https://api.example.com/users\n"
+          "text": "const myPromise = new Promise((resolve, reject) => {\n  setTimeout(() => {\n    resolve(\"Done!\");\n  }, 2000);\n});\n",
+          "type": "text"
         }
       ]
     },
@@ -954,20 +427,62 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "This asks:"
+          "text": "What’s happening here?",
+          "type": "text"
         }
       ]
     },
     {
-      "type": "blockquote",
+      "type": "bulletList",
       "content": [
         {
-          "type": "paragraph",
+          "type": "listItem",
           "content": [
             {
-              "type": "text",
-              "text": "“Give me users.”"
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "We create a Promise",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "It waits 2 seconds",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "Then it calls ",
+                  "type": "text"
+                },
+                {
+                  "text": "resolve()",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -977,8 +492,8 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "You’ll usually get JSON back."
+          "text": "The result becomes available later.",
+          "type": "text"
         }
       ]
     },
@@ -988,24 +503,49 @@
     {
       "type": "heading",
       "attrs": {
-        "level": 3
+        "level": 2
       },
       "content": [
         {
+          "text": "Consuming a Promise with ",
+          "type": "text"
+        },
+        {
+          "text": ".then()",
           "type": "text",
-          "text": "POST Request (Send Data)"
+          "marks": [
+            {
+              "type": "code"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "A Promise by itself doesn’t show results.",
+          "type": "text"
+        },
+        {
+          "type": "hardBreak"
+        },
+        {
+          "text": "You attach handlers.",
+          "type": "text"
         }
       ]
     },
     {
       "type": "codeBlock",
       "attrs": {
-        "language": "bash"
+        "language": "js"
       },
       "content": [
         {
-          "type": "text",
-          "text": "curl -X POST https://api.example.com/users\n"
+          "text": "myPromise.then((result) => {\n  console.log(result);\n});\n",
+          "type": "text"
         }
       ]
     },
@@ -1013,31 +553,38 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "This tells the server:"
+          "text": "Output after 2 seconds:",
+          "type": "text"
         }
       ]
     },
     {
-      "type": "blockquote",
+      "type": "codeBlock",
+      "attrs": {
+        "language": null
+      },
       "content": [
         {
-          "type": "paragraph",
-          "content": [
+          "text": "Done!\n",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": ".then()",
+          "type": "text",
+          "marks": [
             {
-              "type": "text",
-              "text": "“I want to create something.”"
+              "type": "code"
             }
           ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
+        },
         {
-          "type": "text",
-          "text": "We’re keeping it light on flags for now—confidence first, depth later."
+          "text": " runs only when the Promise is fulfilled.",
+          "type": "text"
         }
       ]
     },
@@ -1051,99 +598,15 @@
       },
       "content": [
         {
+          "text": "Handling Errors with ",
+          "type": "text"
+        },
+        {
+          "text": ".catch()",
           "type": "text",
-          "text": "Basic HTTP Request & Response Structure"
-        }
-      ]
-    },
-    {
-      "type": "paragraph"
-    },
-    {
-      "type": "image",
-      "attrs": {
-        "src": "https://qscxtzelbdglvzofrnvz.supabase.co/storage/v1/object/public/blog-images/uploads/c722d0af-0800-4586-ae38-e21d50c2914e.png",
-        "alt": null,
-        "title": null,
-        "width": null,
-        "height": null
-      }
-    },
-    {
-      "type": "image",
-      "attrs": {
-        "src": "https://media.licdn.com/dms/image/v2/D4D12AQHxG4Prn4ZrBQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1718998421506?e=2147483647&t=-2LQBR1-lDFdKqTy66DNfGm4cTz7xy27k8-QYYsYaio&v=beta",
-        "alt": "Image",
-        "title": null,
-        "width": null,
-        "height": null
-      }
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Behind the scenes, every cURL call follows HTTP rules:"
-        }
-      ]
-    },
-    {
-      "type": "bulletList",
-      "content": [
-        {
-          "type": "listItem",
-          "content": [
+          "marks": [
             {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Method (GET, POST)"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Headers"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Body"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Status codes"
-                }
-              ]
+              "type": "code"
             }
           ]
         }
@@ -1153,21 +616,156 @@
       "type": "paragraph",
       "content": [
         {
+          "text": "What if something fails?",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "codeBlock",
+      "attrs": {
+        "language": "js"
+      },
+      "content": [
+        {
+          "text": "const myPromise = new Promise((resolve, reject) => {\n  reject(\"Something went wrong\");\n});\n\nmyPromise\n  .then((result) => console.log(result))\n  .catch((error) => console.log(error));\n",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "Output:",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "codeBlock",
+      "attrs": {
+        "language": null
+      },
+      "content": [
+        {
+          "text": "Something went wrong\n",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": ".catch()",
           "type": "text",
-          "text": "Understanding this makes "
+          "marks": [
+            {
+              "type": "code"
+            }
+          ]
         },
         {
+          "text": " handles rejected Promises.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "horizontalRule"
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "text": "Why Promises Are Better Than Callbacks",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "Before Promises, we had callbacks.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "Example:",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "codeBlock",
+      "attrs": {
+        "language": "js"
+      },
+      "content": [
+        {
+          "text": "getData(function(result) {\n  processData(function(processed) {\n    saveData(function(saved) {\n      console.log(saved);\n    });\n  });\n});\n",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "This is called ",
+          "type": "text"
+        },
+        {
+          "text": "callback hell",
           "type": "text",
           "marks": [
             {
               "type": "bold"
             }
-          ],
-          "text": "every backend tool easier"
+          ]
         },
         {
-          "type": "text",
-          "text": " later."
+          "text": ".",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "Promises flatten this structure:",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "codeBlock",
+      "attrs": {
+        "language": "js"
+      },
+      "content": [
+        {
+          "text": "getData()\n  .then(processData)\n  .then(saveData)\n  .then(console.log)\n  .catch(console.error);\n",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "Cleaner. More readable. More maintainable.",
+          "type": "text"
         }
       ]
     },
@@ -1181,118 +779,8 @@
       },
       "content": [
         {
-          "type": "text",
-          "text": "Where cURL Fits in Backend Development"
-        }
-      ]
-    },
-    {
-      "type": "paragraph"
-    },
-    {
-      "type": "image",
-      "attrs": {
-        "src": "https://assets.apidog.com/blog-learn/2024/02/apidog-workflow.png",
-        "alt": "Image",
-        "title": null,
-        "width": null,
-        "height": null
-      }
-    },
-    {
-      "type": "paragraph"
-    },
-    {
-      "type": "image",
-      "attrs": {
-        "src": "https://svitla.com/uploads/ckeditor/01_27.05.jpg",
-        "alt": "Image",
-        "title": null,
-        "width": null,
-        "height": null
-      }
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "cURL is often used:"
-        }
-      ]
-    },
-    {
-      "type": "bulletList",
-      "content": [
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Before frontend exists"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Before API clients are built"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "During debugging"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "In CI/CD pipelines"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "On remote servers"
-                }
-              ]
-            }
-          ]
+          "text": "Real-World Example: Fetching Data",
+          "type": "text"
         }
       ]
     },
@@ -1300,21 +788,147 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "It’s the "
-        },
+          "text": "Most modern APIs return Promises.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "codeBlock",
+      "attrs": {
+        "language": "js"
+      },
+      "content": [
         {
-          "type": "text",
-          "marks": [
+          "text": "fetch(\"https://api.example.com/users\")\n  .then((response) => response.json())\n  .then((data) => console.log(data))\n  .catch((error) => console.log(error));\n",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "What’s happening:",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "orderedList",
+      "attrs": {
+        "type": null,
+        "start": 1
+      },
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
             {
-              "type": "bold"
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "fetch()",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "text": " returns a Promise",
+                  "type": "text"
+                }
+              ]
             }
-          ],
-          "text": "first responder"
+          ]
         },
         {
-          "type": "text",
-          "text": " of backend debugging."
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "First ",
+                  "type": "text"
+                },
+                {
+                  "text": ".then()",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "text": " converts response to JSON",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "Second ",
+                  "type": "text"
+                },
+                {
+                  "text": ".then()",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "text": " handles the data",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": ".catch()",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "text": " handles errors",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "This pattern is everywhere in modern JavaScript.",
+          "type": "text"
         }
       ]
     },
@@ -1328,8 +942,130 @@
       },
       "content": [
         {
-          "type": "text",
-          "text": "Common Mistakes Beginners Make with cURL"
+          "text": "Visual Flow of a Promise",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph"
+    },
+    {
+      "type": "image",
+      "attrs": {
+        "alt": "Image",
+        "src": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/promises.png",
+        "title": null,
+        "width": null,
+        "height": null
+      }
+    },
+    {
+      "type": "paragraph"
+    },
+    {
+      "type": "image",
+      "attrs": {
+        "alt": "Image",
+        "src": "https://media2.dev.to/dynamic/image/width%3D800%2Cheight%3D%2Cfit%3Dscale-down%2Cgravity%3Dauto%2Cformat%3Dauto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Ft24c294i6z6l5bseuqo1.png",
+        "title": null,
+        "width": null,
+        "height": null
+      }
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "Flow:",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "orderedList",
+      "attrs": {
+        "type": null,
+        "start": 1
+      },
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "Promise created",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "Pending",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "Fulfilled OR Rejected",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": ".then()",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "text": ".catch()",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                },
+                {
+                  "text": " executes",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1337,20 +1073,23 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "Let’s save you some pain."
+          "text": "Simple lifecycle. Predictable behavior.",
+          "type": "text"
         }
       ]
+    },
+    {
+      "type": "horizontalRule"
     },
     {
       "type": "heading",
       "attrs": {
-        "level": 3
+        "level": 2
       },
       "content": [
         {
-          "type": "text",
-          "text": "❌ Overusing Flags Too Early"
+          "text": "Promise Chaining",
+          "type": "text"
         }
       ]
     },
@@ -1358,242 +1097,147 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "cURL has "
+          "text": "Promises can be chained because ",
+          "type": "text"
         },
         {
+          "text": ".then()",
           "type": "text",
           "marks": [
             {
-              "type": "italic"
+              "type": "code"
             }
-          ],
-          "text": "a lot"
+          ]
         },
         {
+          "text": " returns a new Promise.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "codeBlock",
+      "attrs": {
+        "language": "js"
+      },
+      "content": [
+        {
+          "text": "doSomething()\n  .then((result) => {\n    return result + \" Next step\";\n  })\n  .then((finalResult) => {\n    console.log(finalResult);\n  });\n",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "Each step waits for the previous one to complete.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "This creates a clean flow of asynchronous logic.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "horizontalRule"
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "text": "Introducing ",
+          "type": "text"
+        },
+        {
+          "text": "async",
           "type": "text",
-          "text": " of options."
+          "marks": [
+            {
+              "type": "code"
+            }
+          ]
+        },
+        {
+          "text": " / ",
+          "type": "text"
+        },
+        {
+          "text": "await",
+          "type": "text",
+          "marks": [
+            {
+              "type": "code"
+            }
+          ]
+        },
+        {
+          "text": " (Quick Mention)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "Modern JavaScript lets you write Promises like synchronous code:",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "codeBlock",
+      "attrs": {
+        "language": "js"
+      },
+      "content": [
+        {
+          "text": "async function getData() {\n  try {\n    const response = await fetch(\"https://api.example.com\");\n    const data = await response.json();\n    console.log(data);\n  } catch (error) {\n    console.log(error);\n  }\n}\n",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "await",
+          "type": "text",
+          "marks": [
+            {
+              "type": "code"
+            }
+          ]
+        },
+        {
+          "text": " pauses inside async functions until the Promise resolves.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "Under the hood?",
+          "type": "text"
         },
         {
           "type": "hardBreak"
         },
         {
-          "type": "text",
-          "text": "You don’t need them all on day one."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Start simple. Build confidence."
-        }
-      ]
-    },
-    {
-      "type": "horizontalRule"
-    },
-    {
-      "type": "heading",
-      "attrs": {
-        "level": 3
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "❌ Expecting Pretty Output"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "cURL returns "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "raw data"
-        },
-        {
-          "type": "text",
-          "text": "."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "If you want formatting, that’s a "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "italic"
-            }
-          ],
-          "text": "different tool"
-        },
-        {
-          "type": "text",
-          "text": "."
-        }
-      ]
-    },
-    {
-      "type": "horizontalRule"
-    },
-    {
-      "type": "heading",
-      "attrs": {
-        "level": 3
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "❌ Forgetting the Server Is the Boss"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "If something fails:"
-        }
-      ]
-    },
-    {
-      "type": "bulletList",
-      "content": [
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "It’s usually server-side"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Not a “cURL issue”"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "cURL just delivers messages."
-        }
-      ]
-    },
-    {
-      "type": "horizontalRule"
-    },
-    {
-      "type": "heading",
-      "attrs": {
-        "level": 3
-      },
-      "content": [
-        {
-          "type": "text",
-          "text": "❌ Mixing Browser Thinking with API Thinking"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "APIs don’t behave like websites."
-        }
-      ]
-    },
-    {
-      "type": "bulletList",
-      "content": [
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "No visuals"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "No clicks"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Just requests and responses"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "Once you accept that, cURL becomes easy."
+          "text": "Still Promises.",
+          "type": "text"
         }
       ]
     },
@@ -1607,8 +1251,29 @@
       },
       "content": [
         {
+          "text": "Common Beginner Mistakes",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 3
+      },
+      "content": [
+        {
+          "text": "❌ Forgetting to Return in ",
+          "type": "text"
+        },
+        {
+          "text": ".then()",
           "type": "text",
-          "text": "Final Thoughts"
+          "marks": [
+            {
+              "type": "code"
+            }
+          ]
         }
       ]
     },
@@ -1616,28 +1281,367 @@
       "type": "paragraph",
       "content": [
         {
+          "text": "If you don’t return a value, the next ",
+          "type": "text"
+        },
+        {
+          "text": ".then()",
           "type": "text",
-          "text": "cURL isn’t hard."
+          "marks": [
+            {
+              "type": "code"
+            }
+          ]
+        },
+        {
+          "text": " won’t get it.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "horizontalRule"
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 3
+      },
+      "content": [
+        {
+          "text": "❌ Not Handling Errors",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "Always use ",
+          "type": "text"
+        },
+        {
+          "text": ".catch()",
+          "type": "text",
+          "marks": [
+            {
+              "type": "code"
+            }
+          ]
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "text": "try/catch",
+          "type": "text",
+          "marks": [
+            {
+              "type": "code"
+            }
+          ]
+        },
+        {
+          "text": " with async/await.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "horizontalRule"
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 3
+      },
+      "content": [
+        {
+          "text": "❌ Expecting Immediate Results",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "This won’t work:",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "codeBlock",
+      "attrs": {
+        "language": "js"
+      },
+      "content": [
+        {
+          "text": "const data = fetch(\"...\");\nconsole.log(data);\n",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "Because Promises are asynchronous.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "horizontalRule"
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "text": "Mental Model to Keep",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "A Promise is:",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "bulletList",
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "A future value",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "With a success path",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "And a failure path",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "That runs asynchronously",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "That’s it.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "Don’t overcomplicate it.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "horizontalRule"
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "text": "Why Promises Matter",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "Promises are the foundation of:",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "bulletList",
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "API calls",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "Database queries",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "File reading",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "Timers",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "Modern frameworks",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "If you understand Promises, you understand asynchronous JavaScript.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "Everything else builds on this.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "horizontalRule"
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "text": "Final Thoughts",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "text": "Promises aren’t hard.",
+          "type": "text"
         },
         {
           "type": "hardBreak"
         },
         {
-          "type": "text",
-          "text": "It’s "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "bold"
-            }
-          ],
-          "text": "honest"
-        },
-        {
-          "type": "text",
-          "text": "."
+          "text": "They’re just unfamiliar at first.",
+          "type": "text"
         }
       ]
     },
@@ -1645,8 +1649,8 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "It shows you:"
+          "text": "Once you understand:",
+          "type": "text"
         }
       ]
     },
@@ -1660,8 +1664,8 @@
               "type": "paragraph",
               "content": [
                 {
-                  "type": "text",
-                  "text": "What you send"
+                  "text": "States",
+                  "type": "text"
                 }
               ]
             }
@@ -1674,8 +1678,13 @@
               "type": "paragraph",
               "content": [
                 {
+                  "text": ".then()",
                   "type": "text",
-                  "text": "What the server replies"
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
                 }
               ]
             }
@@ -1688,8 +1697,27 @@
               "type": "paragraph",
               "content": [
                 {
+                  "text": ".catch()",
                   "type": "text",
-                  "text": "Nothing more, nothing less"
+                  "marks": [
+                    {
+                      "type": "code"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "text": "Chaining",
+                  "type": "text"
                 }
               ]
             }
@@ -1701,77 +1729,8 @@
       "type": "paragraph",
       "content": [
         {
-          "type": "text",
-          "text": "Mastering cURL builds:"
-        }
-      ]
-    },
-    {
-      "type": "bulletList",
-      "content": [
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Backend confidence"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "API intuition"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "listItem",
-          "content": [
-            {
-              "type": "paragraph",
-              "content": [
-                {
-                  "type": "text",
-                  "text": "Debugging superpowers"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "text": "If you can talk to a server with cURL, you can understand "
-        },
-        {
-          "type": "text",
-          "marks": [
-            {
-              "type": "italic"
-            }
-          ],
-          "text": "any"
-        },
-        {
-          "type": "text",
-          "text": " backend system."
+          "text": "Asynchronous JavaScript becomes manageable.",
+          "type": "text"
         }
       ]
     }
