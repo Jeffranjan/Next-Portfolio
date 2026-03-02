@@ -6,34 +6,64 @@ A cutting-edge, futuristic personal portfolio website built with Next.js, TypeSc
 
 ## 🚀 Features
 
--   **Futuristic "Neo-Arc" Design**: Terminal-inspired UI, glassmorphism, and neon aesthetics.
--   **Comprehensive Admin Dashboard**:
-    -   **Content Management**: Full CRUD operations for Blogs, Projects, Experiences, and Skills.
-    -   **Real-time Analytics**: Live visitor stats, page views, and device breakdown powered by Supabase Realtime.
-    -   **Audit & Trash System**: Robust data safety with activity logging, soft-deletes, and restore capabilities.
--   **Blog/Article Management**: Rich text editor support for creating and managing technical articles.
--   **Interactive 3D Elements**: Immersive scenes powered by Three.js and React Three Fiber.
--   **Smooth Animations**: Fluid transitions and micro-interactions using Framer Motion and GSAP.
--   **Responsive Layout**: Fully optimized pixel-perfect design for mobile, tablet, and desktop.
--   **Contact Integration**: Secure contact form handling with Resend.
+- **Futuristic "Neo-Arc" Design**: Terminal-inspired UI, glassmorphism, and neon aesthetics.
+- **Comprehensive Admin Dashboard**:
+  - **Content Management**: Full CRUD operations for Blogs, Projects, Experiences, and Skills.
+  - **Real-time Analytics**: Live visitor stats, page views, and device breakdown powered by Supabase Realtime.
+  - **Audit & Trash System**: Robust data safety with activity logging, soft-deletes, and restore capabilities.
+- **Blog/Article Management**: Rich text editor support for creating and managing technical articles.
+- **Interactive 3D Elements**: Immersive scenes powered by Three.js and React Three Fiber.
+- **Smooth Animations**: Fluid transitions and micro-interactions using Framer Motion and GSAP.
+- **Responsive Layout**: Fully optimized pixel-perfect design for mobile, tablet, and desktop.
+- **Contact Integration**: Secure contact form handling with Resend.
+
+### ⌨️ Blog Editor Keyboard Shortcuts
+
+The blog editor supports powerful rich-text formatting out of the box:
+
+**Core Formatting**
+
+- **Bold**: `Ctrl` + `B`
+- **Italic**: `Ctrl` + `I`
+- **Strikethrough**: `Ctrl` + `Shift` + `X`
+- **Code (Inline)**: `Ctrl` + `E`
+
+**Block Elements**
+
+- **Heading 1-6**: `Ctrl` + `Alt` + `1-6`
+- **Paragraph**: `Ctrl` + `Alt` + `0`
+- **Bullet List**: `Ctrl` + `Shift` + `8`
+- **Ordered List**: `Ctrl` + `Shift` + `7`
+- **Blockquote**: `Ctrl` + `Shift` + `B`
+- **Code Block**: `Ctrl` + `Alt` + `C`
+- **Hard Break**: `Shift` + `Enter`
+
+**Markdown Shortcuts (Auto-formatting)**
+
+- `# ` / `## ` / `### ` → Headings
+- `- ` or `* ` → Bullet List
+- `1. ` → Ordered List
+- `> ` → Blockquote
+- ` ``` ` → Code Block
+- `---` → Horizontal Rule
 
 ## 🛠️ Tech Stack
 
--   **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
--   **Language**: [TypeScript](https://www.typescriptlang.org/)
--   **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
--   **Backend & Database**:
-    -   [Supabase](https://supabase.com/) (Postgres, Auth, Storage, Realtime)
--   **Animations & 3D**:
-    -   [Framer Motion](https://www.framer.com/motion/)
-    -   [GSAP](https://greensock.com/gsap/)
-    -   [Three.js](https://threejs.org/)
-    -   [React Three Fiber](https://docs.pmnd.rs/react-three-fiber)
--   **UI Components & Utilities**:
-    -   [Recharts](https://recharts.org/) (Data Visualization)
-    -   [Sonner](https://sonner.emilkowal.ski/) (Toast Notifications)
-    -   [Lucide React](https://lucide.dev/) (Icons)
--   **Email Service**: [Resend](https://resend.com/)
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Backend & Database**:
+  - [Supabase](https://supabase.com/) (Postgres, Auth, Storage, Realtime)
+- **Animations & 3D**:
+  - [Framer Motion](https://www.framer.com/motion/)
+  - [GSAP](https://greensock.com/gsap/)
+  - [Three.js](https://threejs.org/)
+  - [React Three Fiber](https://docs.pmnd.rs/react-three-fiber)
+- **UI Components & Utilities**:
+  - [Recharts](https://recharts.org/) (Data Visualization)
+  - [Sonner](https://sonner.emilkowal.ski/) (Toast Notifications)
+  - [Lucide React](https://lucide.dev/) (Icons)
+- **Email Service**: [Resend](https://resend.com/)
 
 ## 📂 Project Structure
 
